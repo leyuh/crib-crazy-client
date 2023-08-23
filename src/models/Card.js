@@ -14,19 +14,19 @@ class Card {
     ];
 
     static RANKS = [
-        "ace",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "jack",
-        "queen",
-        "king"
+        "A",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "J",
+        "Q",
+        "K"
     ];
 
     constructor(suit, rank) {
@@ -34,7 +34,8 @@ class Card {
         this.suitImg = Card.SUIT_IMGS[Card.SUITS.indexOf(suit)];
         this.rank = rank;
         this.rankValue = this.getRankValue();
-        this.getCommonName = this.getCommonName();
+        this.isRed = (suit === "diamonds" || suit === "hearts") ? true : false;
+        this.commonName = this.getCommonName();
     }
 
     getRankValue = () => {

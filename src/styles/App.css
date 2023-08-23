@@ -1,0 +1,17 @@
+#root {
+    background-color: blue;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(167, 183, 157);
+    top: 0px;
+    left: 0px;
+    position: absolute;
+}
