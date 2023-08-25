@@ -30,10 +30,18 @@ const Home = () => {
     }
 
     return <div id="home">
-        <h2>The crib is:</h2>
-        <h1 id="crib-owner-label">{cribIsMine ? "YOURS" : "THEIRS"}</h1>
+        
+        <div id="crib-div">
+            <h2><i>The crib is:</i></h2>
+            <h1 id="crib-owner-label" className={`${cribIsMine ? "your-crib" : "their-crib"}`}>
+                {cribIsMine ? "YOURS" : "THEIRS"}
+            </h1>
+        </div>
 
-        <h2>Select two cards to send to the crib.</h2>
+        <div>
+            <h2 id="select-label">Select two cards to send to the crib.</h2>
+        </div>
+
         <div id="cards-div">
             {myHand && myHand.cards.map((card, i) => {
                 return <div className={`card ${card.isRed ? "red" : "black"} ${selectedCards.indexOf(card) !== -1 && "selected"}`} key={i} onClick={() => {

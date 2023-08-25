@@ -10,7 +10,7 @@ import Navbar from "./Navbar.js";
 function App() {
   return <div id="app">
       <Router>
-        <Navbar />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
