@@ -5,7 +5,7 @@ import "./styles/App.css";
 import Home from "./pages/Home.js";
 import Auth from "./pages/Auth.js";
 
-import Navbar from "./Navbar.js";
+import Navbar from "./components/Navbar.js";
 
 function App() {
   return <div id="app">

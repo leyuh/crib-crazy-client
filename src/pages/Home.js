@@ -6,6 +6,8 @@ import Deck from "../models/Deck.js";
 import Hand from "../models/Hand.js";
 import Card from "../models/Card.js";
 
+import RoundSummary from "../components/RoundSummary.js";
+
 const Home = () => {
 
     const [currDeck, setCurrDeck] = useState(null);
@@ -13,6 +15,8 @@ const Home = () => {
     const [cribIsMine, setCribIsMine] = useState(true);
 
     const [selectedCards, setSelectedCards] = useState([]);
+
+    const [showRoundSummary, setShowRoundSummary] = useState(false);
 
     useEffect(() => {
         let newDeck = new Deck();
@@ -42,7 +46,7 @@ const Home = () => {
             <h2 id="select-label">Select two cards to send to the crib.</h2>
         </div>
 
-        <div id="cards-div">
+        <div className="cards-div large-cards-div" id="home-cards-div">
             {myHand && myHand.cards.map((card, i) => {
                 return <div className={`card ${card.isRed ? "red" : "black"} ${selectedCards.indexOf(card) !== -1 && "selected"}`} key={i} onClick={() => {
                     if (selectedCards.indexOf(card) === -1) {
@@ -55,7 +59,18 @@ const Home = () => {
             })}
         </div>
 
-        <button id="submit-btn">Submit</button>
+        <button id="submit-btn" onClick={() => {
+            if (selectedCards.length == 2) {
+                setShowRoundSummary(true);
+            }
+        }}>Submit</button>
+
+        {showRoundSummary && <RoundSummary 
+            myHand={myHand}
+            selectedCards={selectedCards}
+            cribIsMine={cribIsMine}
+            setShowRoundSummary={setShowRoundSummary}
+        />}
     </div>
 }
 
