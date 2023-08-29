@@ -26,7 +26,7 @@ const Home = () => {
         setMyHand(hand);
         setCribIsMine(Math.random() >= 0.5);
 
-        console.log(hand.getSets());
+        console.log(hand.getRuns());
     }, [])
 
     const addSelectedCard = (card) => {
