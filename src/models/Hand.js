@@ -8,7 +8,7 @@ class Hand {
     }
 
     getSortedCards = () => {
-        return this.cards.sort((a, b) => {
+        return [...this.cards].sort((a, b) => {
             if (Card.RANKS.indexOf(a.rank) > Card.RANKS.indexOf(b.rank)) {
                 return 1;
             }
@@ -73,34 +73,46 @@ class Hand {
     getRuns = () => {
         let runs = [[this.sortedCards[0]]];
 
-        let lastAddition = null;
-        let lastRank = this.sortedCards[0].rank;
-        let lastRankValue = this.sortedCards[0].rankValue;
+        let longestRunLength = 1;
+        let lastCard = this.sortedCards[0];
+        let lastRankAddition;
 
         for (let i = 1; i < this.sortedCards.length; i++) {
-            if (this.sortedCards[i].rankValue - lastRankValue === 1) {
-                runs = runs.map(run => [...run, this.sortedCards[i]]);
-            } else if (this.sortedCards[i].rank === lastRank) {
-                if (!lastAddition) {
-                    lastAddition = runs;
-                    runs = [...runs, ...runs].map(run => [...run, this.sortedCards[i]]);
+            let currCard = this.sortedCards[i];
+            if (currCard.rankIndex - lastCard.rankIndex === 1) {
+                runs = runs.map(run => [...run, currCard]);
+
+                lastCard = currCard;
+                lastRankAddition = null;
+                longestRunLength++;
+            } else if (currCard.rankIndex - lastCard.rankIndex === 0) {
+                if (!lastRankAddition) {
+                    lastRankAddition = [...runs].map(run => run.slice(0, -1))
+                    let newRuns = [...runs].map(run => [...run.slice(0, -1), currCard]);
+                    runs = [...runs, ...newRuns];
                 } else {
-                    runs = [...runs, ...lastAddition].map(run => [...run, this.sortedCards[i]]);
-                }
-            } else {
-                if (runs[0].length >= 3) {
-                    return runs.filter(run => run.length >= 3);
+                    runs = [...runs, ...lastRankAddition.map(run => [...run, currCard])];
                 }
 
-                runs = [[this.sortedCards[i]]];
-                console.log(runs);
+                lastCard = currCard;
+            } else {
+                // RUN BROKEN
+                if (longestRunLength >= 3) {
+                    return runs;
+                } else {
+                    runs = [[currCard]];
+                    lastCard = currCard;
+                    lastRankAddition = null;
+                    longestRunLength = 1;
+                }
             }
-            if (this.sortedCards[i].rank !== lastRank) lastAddition = null;
-            lastRank = this.sortedCards[i].rank;
-            lastRankValue = this.sortedCards[i].rankValue;
         }
 
-        return runs.filter(run => run.length >= 3);
+        if (longestRunLength >= 3) {
+            return runs;
+        }
+
+        return null;
     }
 
     getFlush = () => {
@@ -125,6 +137,18 @@ class Hand {
                 }
             }
         }
+    }
+
+    scoreHand = () => {
+        let rubric = {
+            "fifteens": this.getFifteens(),
+            "sets": this.getSets(),
+            "runs": this.getRuns(),
+            "flush": this.getFlush(),
+            "nobs": this.getNobs()
+        } 
+
+        return rubric;
     }
 }
 

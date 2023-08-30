@@ -34,6 +34,7 @@ class Card {
         this.suitImg = Card.SUIT_IMGS[Card.SUITS.indexOf(suit)];
         this.rank = rank;
         this.rankValue = this.getRankValue();
+        this.rankIndex = Card.RANKS.indexOf(rank);
         this.isRed = (suit === "diamonds" || suit === "hearts") ? true : false;
         this.commonName = this.getCommonName();
     }

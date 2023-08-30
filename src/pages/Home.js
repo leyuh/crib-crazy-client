@@ -21,12 +21,11 @@ const Home = () => {
     useEffect(() => {
         let newDeck = new Deck();
         setCurrDeck(newDeck);
-
-        let hand = new Hand(newDeck.dealCards(6))
+        let hand = new Hand(newDeck.dealCards(5))
         setMyHand(hand);
         setCribIsMine(Math.random() >= 0.5);
 
-        console.log(hand.getRuns());
+        console.log(hand.scoreHand());
     }, [])
 
     const addSelectedCard = (card) => {
