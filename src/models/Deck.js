@@ -1,8 +1,8 @@
 import Card from "./Card.js";
 
 class Deck {
-    constructor() {
-        this.cards = this.generateDeck();
+    constructor(cards = null) {
+        cards ? this.cards = cards : this.cards = this.generateDeck();
     }
 
     shuffleDeck = (cards) => {

@@ -21,11 +21,13 @@ const Home = () => {
     useEffect(() => {
         let newDeck = new Deck();
         setCurrDeck(newDeck);
-        let hand = new Hand(newDeck.dealCards(5))
+        let hand = new Hand(newDeck.dealCards(6))
         setMyHand(hand);
-        setCribIsMine(Math.random() >= 0.5);
 
-        console.log(hand.scoreHand());
+        let cribIsMine = Math.random() >= 0.5;
+        setCribIsMine(cribIsMine);
+
+        Hand.getBestCombo(newDeck, hand, cribIsMine);
     }, [])
 
     const addSelectedCard = (card) => {
