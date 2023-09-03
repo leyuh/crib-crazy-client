@@ -125,7 +125,7 @@ class Hand {
         for (let i = 0; i < Card.SUITS.length; i++) {
             let currSuit = Card.SUITS[i];
             let cardsOfSuit = this.cards.filter(card => card.suit === currSuit);
-            if (cardsOfSuit.length >= 4) {
+            if ((cardsOfSuit.length === 4 && cardsOfSuit.indexOf(this.starterCard) === -1) || cardsOfSuit.length > 4) {
                 return cardsOfSuit;
             }
         }
@@ -238,9 +238,9 @@ class Hand {
                 // get potential crib points
                 let potentialCribPoints = thisCrib.getPotentialPoints(deck);
 
-                let overallScore = Math.round((cribIsMine ? potentialHandPoints + potentialCribPoints : potentialHandPoints - potentialCribPoints) * 10) / 10
+                let overallScore = Math.round((potentialHandPoints + (cribIsMine ? potentialCribPoints : potentialCribPoints * -1)) * 10) / 10;
 
-                if (overallScore >= bestCombo["overall score"]) {
+                if (bestCombo["hand cards"].length === 0 || overallScore >= bestCombo["overall score"]) {
                     bestCombo = {
                         "hand cards": thisHand.cards,
                         "hand points": handPoints,
@@ -249,8 +249,8 @@ class Hand {
             
                         "crib cards": thisCrib.cards,
                         "crib points": cribPoints,
-                        "crib points total": cribPointsCount,
-                        "potential crib points": potentialCribPoints,
+                        "crib points total": cribIsMine ? cribPointsCount : cribPointsCount * -1,
+                        "potential crib points": cribIsMine ? potentialCribPoints : potentialCribPoints * -1,
             
                         "overall score": overallScore
                     };
@@ -277,10 +277,10 @@ class Hand {
 
             "crib cards": cribCards,
             "crib points": cribHand.scoreHand(),
-            "crib points total": cribHand.handPoints,
-            "potential crib points": potentialCribPoints,
+            "crib points total": cribIsMine ? cribHand.handPoints : cribHand.handPoints * -1,
+            "potential crib points": cribIsMine ? potentialCribPoints : potentialCribPoints * -1,
 
-            "overall score": Math.round((cribIsMine ? potentialHandPoints + potentialCribPoints : potentialHandPoints - potentialCribPoints) * 10) / 10
+            "overall score": Math.round((potentialHandPoints + ((cribIsMine ? potentialCribPoints : potentialCribPoints * -1) )) * 10) / 10
         }
 
         return combo;

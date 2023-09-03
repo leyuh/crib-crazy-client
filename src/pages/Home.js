@@ -21,6 +21,12 @@ const Home = () => {
     const [showRoundSummary, setShowRoundSummary] = useState(false);
 
     useEffect(() => {
+        resetRound();
+    }, [])
+
+    const resetRound = () => {
+        setSelectedCards([]);
+        
         let newDeck = new Deck();
         setCurrDeck(newDeck);
         let hand = new Hand(newDeck.dealCards(6))
@@ -30,7 +36,7 @@ const Home = () => {
         setCribIsMine(cribIsMine);
 
         setBestCombo(Hand.getBestCombo(newDeck, hand, cribIsMine));
-    }, [])
+    }
 
     const addSelectedCard = (card) => {
         if (selectedCards.length !== 2) {
@@ -103,6 +109,7 @@ const Home = () => {
                 }
 
                 setShowRoundSummary(true);
+
             }
         }}>Submit</button>
 
@@ -112,6 +119,7 @@ const Home = () => {
             bestCombo={bestCombo}
             myCombo={myCombo}
             cribIsMine={cribIsMine}
+            resetRound={resetRound}
         />}
     </div>
 }

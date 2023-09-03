@@ -96,7 +96,7 @@
 }
 
 .point-combo-div {
-    margin-top: -2.5px;
+    margin-top: 0px;
     height: 45px;
     width: 160px;
     justify-content: left;
@@ -147,25 +147,45 @@
 }
 
 .score-label {
-    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 10px;
+    text-align: right;
+    font-size: 20px;
+}
+
+#accuracy-rating-label {
+    height: 25px;
+    width: 100%;
+    color: white;
+    position: relative;
+    top: -97.5px !important;
+    text-align: center;
+    color: black !important;
+    font-weight: bolder;
+    font-size: 15px;
+    z-index: 5;
 }
 
 #accuracy-percentage-label {
-    background-color: rgb(43, 75, 38);
-    top: -65px !important;
-    font-size: 40px;
+    background-color: rgb(42, 74, 37);
+    top: -75px !important;
+    font-size: 50px;
     position: relative;
+    height: 55px;
+    line-height: 55px;
 }
 
 #round-sum-continue-btn {
-    height: 40px;
-    width: 110px;
+    height: 35px;
+    width: 120px;
     border: 0px;
-    border-radius: 10px;
+    border-radius: 5px;
     font-family: inherit;
     font-weight: bold;
     font-size: 15px;
     position: relative;
-    top: -50px;
+    top: -117.5px;
+    left: calc(50% - 60px);
+    color: white;
+    background-color: rgb(27, 50, 23);
 }

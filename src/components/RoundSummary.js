@@ -7,7 +7,8 @@ const RoundSummary = (props) => {
         originalHand,
         bestCombo,
         myCombo,
-        cribIsMine
+        cribIsMine,
+        resetRound
     } = props;
 
 
@@ -39,10 +40,15 @@ const RoundSummary = (props) => {
         </div>
 
         <h1 id="accuracy-percentage-label">
-            {Math.floor(myCombo["overall score"] / bestCombo["overall score"] * 100)}%
+            {Math.max(Math.floor(myCombo["overall score"] / bestCombo["overall score"] * 100), 0)}%
         </h1>
+        
+        <h3 id="accuracy-rating-label">ACCURACY RATING</h3>
 
-        <button id="round-sum-continue-btn" onClick={() => setShowRoundSummary(false)}>CONTINUE</button>
+        <button id="round-sum-continue-btn" onClick={() => {
+            setShowRoundSummary(false);
+            resetRound();
+        }}>CONTINUE</button>
 
 
     </div>
@@ -83,7 +89,7 @@ const SummaryDiv = (props) => {
             potPoints={combo["potential crib points"]}
         />
 
-        <h2 className="score-label">Score: {combo["overall score"]}</h2>
+        <h2 className="score-label">Throw Score: {combo["overall score"]}</h2>
 
     </div>
 }
