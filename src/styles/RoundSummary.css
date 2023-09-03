@@ -3,9 +3,9 @@
     height: 800px;
     width: 700px;
 
-    background-color: rgb(47, 79, 42);
+    background-color: rgb(48, 80, 43);
     border-radius: 30px;
-    border: 5px solid rgb(34, 57, 31);
+    border: 5px solid rgb(27, 50, 23);
 
     top: calc(50% - 460px);
     left: calc(50% - 350px);
@@ -47,8 +47,8 @@
 }
 
 .rs-summary-div {
-    background-color: rgb(34, 57, 31);
-    border: 3px solid black;
+    background-color: rgb(27, 50, 23);
+    border: 0px;
     height: 100%;
     width: calc(50% - 5px);
     overflow-y: scroll;
@@ -77,4 +77,95 @@
     position: relative;
     top: -50px;
     color: black;
+    margin-bottom: -30px;
+}
+
+.points-list {
+    color: black;
+    list-style: none;
+}
+
+.points-list > li {
+    margin-left: -35px;
+    width: calc(100% + 30px);
+    margin-bottom: 25px;
+}
+
+.point-combo-div > .card {
+    margin-right: -30px;
+}
+
+.point-combo-div {
+    margin-top: -2.5px;
+    height: 45px;
+    width: 160px;
+    justify-content: left;
+    left: 0px;
+    position: relative;
+    margin-left: 0px;
+    color: inherit;
+    font-weight: inherit;
+}
+
+.type-of-point-label {
+    width: 100px;
+    font-size: 20px;
+    margin-top: 5px;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.point-count-label {
+    margin-right: 0px;
+    right: 0px;
+    position: relative;
+    width: 50px;
+    float: right;
+    margin: 0px;
+    margin-top: -25px;
+    text-align: right;
+}
+
+.rs-summary-evaluation-div {
+    border: 2px solid white;
+    width: calc(100% - 24px);
+    left: 0px;
+    position: relative;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 0px;
+}
+
+.rs-summary-evaluation-div > .cards-div {
+    width: calc(100% - 30px);
+    height: 50px;
+}
+
+.total-li {
+    color: white;
+}
+
+.score-label {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#accuracy-percentage-label {
+    background-color: rgb(43, 75, 38);
+    top: -65px !important;
+    font-size: 40px;
+    position: relative;
+}
+
+#round-sum-continue-btn {
+    height: 40px;
+    width: 110px;
+    border: 0px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 15px;
+    position: relative;
+    top: -50px;
 }

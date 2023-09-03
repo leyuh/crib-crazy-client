@@ -149,21 +149,21 @@ class Hand {
         let points = [];
 
         let fifteens = this.getFifteens();
-        for (let i = 0; i < fifteens.length; i++) points.push(["fifteen", fifteens[i], 2]);
+        for (let i = 0; i < fifteens.length; i++) points.push(["Fifteen", fifteens[i], 2]);
         
         let sets = this.getSets();
-        for (let i = 0; i < sets.length; i++) points.push(["set", sets[i], sets[i].length*(sets[i].length - 1)]);
+        for (let i = 0; i < sets.length; i++) points.push(["Set", sets[i], sets[i].length*(sets[i].length - 1)]);
 
         if (this.cardCount === 2) return points;
 
         let runs = this.getRuns();
-        for (let i = 0; i < runs.length; i++) points.push(["run", runs[i], runs[i].length]);
+        for (let i = 0; i < runs.length; i++) points.push(["Run", runs[i], runs[i].length]);
 
         let flush = this.getFlush();
-        if (flush) points.push(["flush", flush, flush.length]);
+        if (flush) points.push(["Flush", flush, flush.length]);
 
         let nobs = this.getNobs();
-        if (nobs) points.push(["nobs", nobs, 1]);
+        if (nobs) points.push(["Nobs", nobs, 1]);
 
         return points;
     }
@@ -238,7 +238,7 @@ class Hand {
                 // get potential crib points
                 let potentialCribPoints = thisCrib.getPotentialPoints(deck);
 
-                let overallScore = cribIsMine ? potentialHandPoints + potentialCribPoints : potentialHandPoints - potentialCribPoints;
+                let overallScore = Math.round((cribIsMine ? potentialHandPoints + potentialCribPoints : potentialHandPoints - potentialCribPoints) * 10) / 10
 
                 if (overallScore >= bestCombo["overall score"]) {
                     bestCombo = {

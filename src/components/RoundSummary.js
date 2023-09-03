@@ -38,7 +38,11 @@ const RoundSummary = (props) => {
 
         </div>
 
-        <button onClick={() => setShowRoundSummary(false)}>CONTINUE</button>
+        <h1 id="accuracy-percentage-label">
+            {Math.floor(myCombo["overall score"] / bestCombo["overall score"] * 100)}%
+        </h1>
+
+        <button id="round-sum-continue-btn" onClick={() => setShowRoundSummary(false)}>CONTINUE</button>
 
 
     </div>
@@ -67,13 +71,19 @@ const SummaryDiv = (props) => {
         <SummaryEvaluationDiv 
             isHand={true}
             cards={combo["hand cards"]}
+            points={combo["hand points"]}
+            pointsTotal={combo["hand points total"]}
+            potPoints={combo["potential hand points"]}
         />
         <SummaryEvaluationDiv 
             isHand={false}
             cards={combo["crib cards"]}
+            points={combo["crib points"]}
+            pointsTotal={combo["crib points total"]}
+            potPoints={combo["potential crib points"]}
         />
 
-        <h2>Score: {combo["overall score"]}</h2>
+        <h2 className="score-label">Score: {combo["overall score"]}</h2>
 
     </div>
 }
@@ -81,7 +91,10 @@ const SummaryDiv = (props) => {
 const SummaryEvaluationDiv = (props) => {
     const {
         isHand,
-        cards
+        cards,
+        points,
+        pointsTotal,
+        potPoints
     } = props;
 
     return <div className={`rs-summary-${isHand ? "hand" : "crib"}-evaluation-div rs-summary-evaluation-div`}>
@@ -93,6 +106,43 @@ const SummaryEvaluationDiv = (props) => {
                 </div>
             })}
         </div>
+
+        <h2>{isHand ? "HAND" : "CRIB"} POINTS:</h2>
+        <ul className="points-list">
+            {points.map((point, i) => {
+                let typeOfPoint = point[0];
+                let cards = point[1];
+                let pointCount = point[2];
+
+                return <li key={i}>
+                    <hr/>
+                    <div className="cards-div small-cards-div point-combo-div">
+                        {cards.map((card, i) => {
+                            return <div className={` card ${card.isRed ? "red" : "black"}`} key={i}>
+                                <h4>{card.rank}</h4>
+                                <h4>{card.suitImg}</h4>
+                            </div>
+                        })}
+                    </div>
+                    <h4 className="type-of-point-label">{typeOfPoint}</h4>
+
+                    <h2 className="point-count-label">{pointCount}</h2>
+
+                    <hr/>
+                </li>
+            })}
+
+            <li className="total-li">
+                <h4 className="type-of-point-label">Total:</h4>
+                <h2 className="point-count-label">{pointsTotal}</h2>
+            </li>
+
+            <li className="total-li">
+                <h4 className="type-of-point-label">Potential:</h4>
+                <h2 className="point-count-label">{potPoints}</h2>
+            </li>
+        </ul>
+
     </div>
 }
 
