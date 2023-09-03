@@ -11,7 +11,7 @@ class Hand {
         this.scoreHand().map(pointInfo => this.handPoints += pointInfo[2]);
     }
 
-    static TEST_COUNT = 50;
+    static TEST_COUNT = 200;
 
     getSortedCards = () => {
         return [...this.cards].sort((a, b) => {
@@ -38,7 +38,7 @@ class Hand {
                 combinations.push(temp);
             }
         }
-
+        
         return combinations;
     }
 
@@ -168,6 +168,39 @@ class Hand {
         return points;
     }
 
+    getPotentialPoints = (deck) => {
+
+        if (this.cardCount === 2) {
+            let totalPotentialCribPoints = 0;
+
+            for (let i = 0; i < Hand.TEST_COUNT; i++) {
+                let testDeck = new Deck([...deck.cards]);
+                let testCards = testDeck.dealCards(3);
+
+                let testHand = new Hand([...this.cards, ...testCards], testCards[2]);
+                let testHandPoints = testHand.handPoints;
+
+                totalPotentialCribPoints += testHandPoints;
+            }
+
+            return Math.round(totalPotentialCribPoints / Hand.TEST_COUNT * 10) / 10;
+
+        } else if (this.cardCount === 4) {
+            let totalPotentialHandPoints = 0;
+
+            for (let i = 0; i < deck.cards.length; i++) {
+                let thisCard = deck.cards[i];
+
+                let testHand = new Hand([...this.cards, thisCard], thisCard);
+                let testHandPoints = testHand.handPoints;
+                totalPotentialHandPoints += testHandPoints;
+            }
+
+            return Math.round(totalPotentialHandPoints / deck.cards.length * 10) / 10;
+        }
+    }
+
+
     static getBestCombo = (deck, hand, cribIsMine) => {
 
         let bestCombo = {
@@ -196,36 +229,61 @@ class Hand {
                 let handPointsCount = thisHand.handPoints;
 
                 // get potential hand points
-                let totalPotentialHandPoints = 0;
-                for (let i = 0; i < deck.length; i++) {
-                    let thisCard = deck.cards[i];
-
-                    let testHand = new Hand([...thisHand.cards, thisCard], thisCard);
-                    let testHandPoints = testHand.handPoints;
-
-                    totalPotentialHandPoints += testHandPoints;
-                }
-                let potentialHandPoints = Math.round(totalPotentialHandPoints / deck.length * 10) / 10;
+                let potentialHandPoints = thisHand.getPotentialPoints(deck);
 
                 // score crib
                 let cribPoints = thisCrib.scoreHand();
                 let cribPointsCount = thisCrib.handPoints;
 
                 // get potential crib points
-                let totalPotentialCribPoints = 0;
-                for (let i = 0; i < Hand.TEST_COUNT; i++) {
-                    let testCards = (new Deck(deck.cards)).cards.dealCards(3);
+                let potentialCribPoints = thisCrib.getPotentialPoints(deck);
 
-                    let testHand = new Hand([...thisCrib.cards, ...testCards], testCards[2]);
-                    let testHandPoints = testHand.handPoints;
+                let overallScore = cribIsMine ? potentialHandPoints + potentialCribPoints : potentialHandPoints - potentialCribPoints;
 
-                    totalPotentialCribPoints += testHandPoints;
+                if (overallScore >= bestCombo["overall score"]) {
+                    bestCombo = {
+                        "hand cards": thisHand.cards,
+                        "hand points": handPoints,
+                        "hand points total": handPointsCount,
+                        "potential hand points": potentialHandPoints,
+            
+                        "crib cards": thisCrib.cards,
+                        "crib points": cribPoints,
+                        "crib points total": cribPointsCount,
+                        "potential crib points": potentialCribPoints,
+            
+                        "overall score": overallScore
+                    };
                 }
-                let potentialCribPoints = Math.round(totalPotentialCribPoints / Hand.TEST_COUNT * 10) / 10;
-
             }
         }
 
+        return bestCombo;
+
+    }
+
+    static evaluateCombo = (deck, handCards, cribCards, cribIsMine) => {
+        let handHand = new Hand(handCards);
+        let cribHand = new Hand(cribCards);
+
+        let potentialHandPoints = handHand.getPotentialPoints(deck);
+        let potentialCribPoints = cribHand.getPotentialPoints(deck);
+
+        let combo = {
+            "hand cards": handCards,
+            "hand points": handHand.scoreHand(),
+            "hand points total": handHand.handPoints,
+            "potential hand points": potentialHandPoints,
+
+            "crib cards": cribCards,
+            "crib points": cribHand.scoreHand(),
+            "crib points total": cribHand.handPoints,
+            "potential crib points": potentialCribPoints,
+
+            "overall score": Math.round((cribIsMine ? potentialHandPoints + potentialCribPoints : potentialHandPoints - potentialCribPoints) * 10) / 10
+        }
+
+        return combo;
     }
 }
 

@@ -3,6 +3,7 @@ import Card from "./Card.js";
 class Deck {
     constructor(cards = null) {
         cards ? this.cards = cards : this.cards = this.generateDeck();
+        this.cards = this.shuffleDeck(this.cards);
     }
 
     shuffleDeck = (cards) => {
@@ -22,7 +23,7 @@ class Deck {
         }
 
 
-        return this.shuffleDeck(cards);
+        return cards;
     }
 
     dealCards = (cardCount) => {
