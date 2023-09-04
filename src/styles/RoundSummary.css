@@ -187,5 +187,6 @@
     top: -117.5px;
     left: calc(50% - 60px);
     color: white;
-    background-color: rgb(27, 50, 23);
+    background-color: rgb(76, 168, 76);
+    background-image: linear-gradient(rgb(106, 189, 106), rgb(76, 168, 76));
 }

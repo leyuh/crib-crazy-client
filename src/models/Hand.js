@@ -11,7 +11,7 @@ class Hand {
         this.scoreHand().map(pointInfo => this.handPoints += pointInfo[2]);
     }
 
-    static TEST_COUNT = 200;
+    static TEST_COUNT = 300;
 
     getSortedCards = () => {
         return [...this.cards].sort((a, b) => {

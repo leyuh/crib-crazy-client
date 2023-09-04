@@ -5,6 +5,7 @@ const RoundSummary = (props) => {
     const {
         setShowRoundSummary,
         originalHand,
+        displayCards,
         bestCombo,
         myCombo,
         cribIsMine,
@@ -17,7 +18,7 @@ const RoundSummary = (props) => {
         <h2>{cribIsMine ? "YOUR" : "THEIR"} CRIB</h2>
 
         <div className="cards-div med-cards-div" id="rs-initial-hand-div">
-            {originalHand.cards.map((card, i) => {
+            {displayCards.map((card, i) => {
                 return <div className={`rs-initial-hand-card card ${card.isRed ? "red" : "black"}`} key={i}>
                     <h4>{card.rank}</h4>
                     <h4>{card.suitImg}</h4>
@@ -40,7 +41,7 @@ const RoundSummary = (props) => {
         </div>
 
         <h1 id="accuracy-percentage-label">
-            {Math.max(Math.floor(myCombo["overall score"] / bestCombo["overall score"] * 100), 0)}%
+            {Math.min(Math.max(Math.floor(myCombo["overall score"] / bestCombo["overall score"] * 100), 0), 100)}%
         </h1>
         
         <h3 id="accuracy-rating-label">ACCURACY RATING</h3>

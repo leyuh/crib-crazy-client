@@ -17,11 +17,10 @@
 }
 
 #crib-div {
-    background-image: linear-gradient(rgb(110, 85, 59), rgb(75, 55, 33));
     width: 210px;
     height: 80px;
     border-radius: 5px;
-    border: 5px solid rgb(145, 0, 0);
+    border: 0px solid rgb(145, 0, 0);
     top: 20px;
     position: relative;
     padding: 5px;
@@ -29,8 +28,9 @@
 
 #crib-div > * {
     text-align: center;
-    height: 35px;
+    height: 25px;
     margin: 5px;
+    font-weight: 900;
 }
 
 .your-crib {
@@ -52,6 +52,7 @@
 
     margin-left: auto;
     margin-right: auto;
+
 }
 
 #home-cards-div {
@@ -145,21 +146,37 @@
         gap: 5px;
     }
 
-    .large-card {
+    .large-cards-div > .card {
         width: 50px;
         height: 75px;
     }
 
-    .large-card > h4 {
+    .large-cards-div > .card > h4 {
         font-size: 25px;
     }
+}
+
+#cards-sort-btn {
+    height: 20px;
+    width: 80px;
+    position: relative;
+    left: calc(50% - 40px);
+    border: 0px solid rgb(34, 57, 31);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    top: -69px;
+    background-color: rgb(34, 57, 31);
+    color: white;
 }
 
 #submit-btn {
     height: 50px;
     width: 140px;
     position: relative;
-    left: calc(50% - 70px);
+    left: calc(50% - 150px);
     border: 3px solid rgb(34, 57, 31);
     border-radius: 10px;
     font-family: inherit;

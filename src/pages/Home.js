@@ -20,6 +20,8 @@ const Home = () => {
 
     const [showRoundSummary, setShowRoundSummary] = useState(false);
 
+    const [displayCards, setDisplayCards] = useState(null);
+
     useEffect(() => {
         resetRound();
     }, [])
@@ -36,6 +38,23 @@ const Home = () => {
         setCribIsMine(cribIsMine);
 
         setBestCombo(Hand.getBestCombo(newDeck, hand, cribIsMine));
+    }
+
+    useEffect(() => {
+        if (myHand) {
+            setDisplayCards(myHand.cards);
+        }
+    }, [myHand])
+
+    const sortFunction = (a, b) => {
+        if (Card.RANKS.indexOf(a.rank) > Card.RANKS.indexOf(b.rank)) {
+            return 1;
+        } else if (Card.RANKS.indexOf(a.rank) === Card.RANKS.indexOf(b.rank)) {
+            if (Card.SUITS.indexOf(a.suit) > Card.SUITS.indexOf(b.suit)) {
+                return 1;
+            }
+        }
+        return -1;
     }
 
     const addSelectedCard = (card) => {
@@ -60,7 +79,7 @@ const Home = () => {
         </div>
 
         <div className="cards-div large-cards-div" id="home-cards-div">
-            {myHand && myHand.cards.map((card, i) => {
+            {displayCards && displayCards.map((card, i) => {
                 return <div className={`card ${card.isRed ? "red" : "black"} ${selectedCards.indexOf(card) !== -1 && "selected"}`} key={i} onClick={() => {
                     if (selectedCards.indexOf(card) === -1) {
                         addSelectedCard(card);
@@ -72,20 +91,15 @@ const Home = () => {
             })}
         </div>
 
+        <button id="cards-sort-btn" onClick={() => {
+            setDisplayCards(myHand.sortedCards);
+        }}>Sort</button>
+
         <button id="submit-btn" onClick={() => {
 
             let myComboIsBestCombo = true;
 
-            let sortFunction = (a, b) => {
-                if (Card.RANKS.indexOf(a.rank) > Card.RANKS.indexOf(b.rank)) {
-                    return 1;
-                } else if (Card.RANKS.indexOf(a.rank) === Card.RANKS.indexOf(b.rank)) {
-                    if (Card.SUITS.indexOf(a.suit) > Card.SUITS.indexOf(b.suit)) {
-                        return 1;
-                    }
-                }
-                return -1;
-            }
+            
 
             let myCribSorted = selectedCards.sort(sortFunction);
             let bestCribSorted = bestCombo["crib cards"].sort(sortFunction);
@@ -116,6 +130,7 @@ const Home = () => {
         {showRoundSummary && <RoundSummary 
             setShowRoundSummary={setShowRoundSummary}
             originalHand={myHand}
+            displayCards={displayCards}
             bestCombo={bestCombo}
             myCombo={myCombo}
             cribIsMine={cribIsMine}
