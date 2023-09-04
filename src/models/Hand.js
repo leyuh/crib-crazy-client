@@ -248,7 +248,13 @@ class Hand {
                         "potential hand points": potentialHandPoints,
             
                         "crib cards": thisCrib.cards,
-                        "crib points": cribPoints,
+                        "crib points": cribIsMine ? cribPoints : cribPoints.map((point) => {
+                            return [
+                                point[0],
+                                point[1],
+                                point[2]*-1
+                            ]
+                        }),
                         "crib points total": cribIsMine ? cribPointsCount : cribPointsCount * -1,
                         "potential crib points": cribIsMine ? potentialCribPoints : potentialCribPoints * -1,
             
@@ -276,7 +282,13 @@ class Hand {
             "potential hand points": potentialHandPoints,
 
             "crib cards": cribCards,
-            "crib points": cribHand.scoreHand(),
+            "crib points": cribIsMine ? cribHand.scoreHand() : cribHand.scoreHand().map((point) => {
+                return [
+                    point[0],
+                    point[1],
+                    point[2]*-1
+                ]
+            }),
             "crib points total": cribIsMine ? cribHand.handPoints : cribHand.handPoints * -1,
             "potential crib points": cribIsMine ? potentialCribPoints : potentialCribPoints * -1,
 
