@@ -201,7 +201,7 @@ class Hand {
     }
 
 
-    static getBestCombo = (deck, hand, cribIsMine) => {
+    static getBestCombo = (deck, hand, cribIsMine, worst = false) => {
 
         let bestCombo = {
             "hand cards": [],
@@ -215,7 +215,21 @@ class Hand {
             "potential crib points": 0,
 
             "overall score": 0
-        }
+        };
+
+        let worstCombo = {
+            "hand cards": [],
+            "hand points": [],
+            "hand points total": 0,
+            "potential hand points": 0,
+
+            "crib cards": [],
+            "crib points": [],
+            "crib points total": 0,
+            "potential crib points": 0,
+
+            "overall score": 0
+        };
 
         // test all 15 possible hand-crib combos
         for (let i = 0; i < hand.cardCount; i++) {
@@ -240,33 +254,40 @@ class Hand {
 
                 let overallScore = Math.round((potentialHandPoints + (cribIsMine ? potentialCribPoints : potentialCribPoints * -1)) * 10) / 10;
 
-                if (bestCombo["hand cards"].length === 0 || overallScore >= bestCombo["overall score"]) {
-                    bestCombo = {
-                        "hand cards": thisHand.cards,
-                        "hand points": handPoints,
-                        "hand points total": handPointsCount,
-                        "potential hand points": potentialHandPoints,
-            
-                        "crib cards": thisCrib.cards,
-                        "crib points": cribIsMine ? cribPoints : cribPoints.map((point) => {
-                            return [
-                                point[0],
-                                point[1],
-                                point[2]*-1
-                            ]
-                        }),
-                        "crib points total": cribIsMine ? cribPointsCount : cribPointsCount * -1,
-                        "potential crib points": cribIsMine ? potentialCribPoints : potentialCribPoints * -1,
-            
-                        "overall score": overallScore
-                    };
+                let thisCombo = {
+                    "hand cards": thisHand.cards,
+                    "hand points": handPoints,
+                    "hand points total": handPointsCount,
+                    "potential hand points": potentialHandPoints,
+        
+                    "crib cards": thisCrib.cards,
+                    "crib points": cribIsMine ? cribPoints : cribPoints.map((point) => {
+                        return [
+                            point[0],
+                            point[1],
+                            point[2]*-1
+                        ]
+                    }),
+                    "crib points total": cribIsMine ? cribPointsCount : cribPointsCount * -1,
+                    "potential crib points": cribIsMine ? potentialCribPoints : potentialCribPoints * -1,
+        
+                    "overall score": overallScore
+                };
+
+                if (!worst && bestCombo["hand cards"].length === 0 || overallScore >= bestCombo["overall score"]) {
+                    bestCombo = thisCombo;
+                }
+
+                if (worst && worstCombo["hand cards"].length === 0 || overallScore <= worstCombo["overall score"]) {
+                    worstCombo = thisCombo;
                 }
             }
         }
 
-        return bestCombo;
+        return worst ? worstCombo : bestCombo;
 
     }
+
 
     static evaluateCombo = (deck, handCards, cribCards, cribIsMine) => {
         let handHand = new Hand(handCards);

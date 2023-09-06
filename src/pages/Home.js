@@ -16,6 +16,7 @@ const Home = () => {
 
     const [selectedCards, setSelectedCards] = useState([]);
     const [bestCombo, setBestCombo] = useState(null);
+    const [worstCombo, setWorstCombo] = useState(null);
     const [myCombo, setMyCombo] = useState(null);
 
     const [showRoundSummary, setShowRoundSummary] = useState(false);
@@ -38,6 +39,7 @@ const Home = () => {
         setCribIsMine(cribIsMine);
 
         setBestCombo(Hand.getBestCombo(newDeck, hand, cribIsMine));
+        setWorstCombo(Hand.getBestCombo(newDeck, hand, cribIsMine, true));
     }
 
     useEffect(() => {
@@ -132,6 +134,7 @@ const Home = () => {
             originalHand={myHand}
             displayCards={displayCards}
             bestCombo={bestCombo}
+            worstCombo={worstCombo}
             myCombo={myCombo}
             cribIsMine={cribIsMine}
             resetRound={resetRound}

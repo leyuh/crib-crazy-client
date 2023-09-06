@@ -7,11 +7,16 @@ const RoundSummary = (props) => {
         originalHand,
         displayCards,
         bestCombo,
+        worstCombo,
         myCombo,
         cribIsMine,
         resetRound
     } = props;
 
+    const getAccuracyRating = (plrScore, bestPosScore, worstPosScore) => {
+        let range = bestPosScore - worstPosScore;
+        return Math.floor(((plrScore - worstPosScore) / range) * 100);
+    }
 
     return <div id="round-summary">
         <h1>ROUND SUMMARY</h1>
@@ -41,7 +46,7 @@ const RoundSummary = (props) => {
         </div>
 
         <h1 id="accuracy-percentage-label">
-            {Math.min(Math.max(Math.floor(myCombo["overall score"] / bestCombo["overall score"] * 100), 0), 100)}%
+            {getAccuracyRating(myCombo["overall score"], bestCombo["overall score"], worstCombo["overall score"])}%
         </h1>
         
         <h3 id="accuracy-rating-label">ACCURACY RATING</h3>
