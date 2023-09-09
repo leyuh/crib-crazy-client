@@ -1,9 +1,3 @@
-#home {
-    height: calc(100% - 60px);
-    top: 60px;
-    position: absolute;
-    width: 100%;
-}
 
 #home > * {
     margin-left: auto;
@@ -136,26 +130,6 @@
     border-style: dashed;
 }
 
-@media screen and (max-width: 650px) {
-
-    #home-cards-div {
-        width: 340px;
-        height: 100px;
-        position: relative;
-        left: calc(50% - 188px) !important;
-        gap: 5px;
-    }
-
-    .large-cards-div > .card {
-        width: 50px;
-        height: 75px;
-    }
-
-    .large-cards-div > .card > h4 {
-        font-size: 25px;
-    }
-}
-
 #cards-sort-btn {
     height: 20px;
     width: 80px;
@@ -184,5 +158,85 @@
     font-weight: bold;
     background-color: rgb(76, 168, 76);
     background-image: linear-gradient(rgb(106, 189, 106), rgb(76, 168, 76));
+    color: black;
+}
+
+@media screen and (max-width: 650px) {
+
+    #crib-div {
+        top: -20px;
+        margin-bottom: -50px;
+    }
+
+    #home-cards-div {
+        width: 360px;
+        height: 95px;
+        position: relative;
+        left: calc(50% - 188px) !important;
+        border-radius: 10px;
+    }
+
+    .cards-div {
+        gap: 2.5px;
+        padding: 0px;
+    }
+
+    .large-cards-div > .card {
+        width: 55px;
+        height: 80px;
+    }
+
+    .large-cards-div > .card > h4 {
+        font-size: 30px;
+    }
+
+    .med-cards-div > .card {
+        width: 50px;
+        height: 75px;
+    }
+
+    .med-cards-div > .card > h4 {
+        font-size: 30px;
+    }
+
+    .med-cards-div {
+        height: 90px;
+        width: 345px;
+        margin-bottom: 10px;
+    }
+
+    #cards-sort-btn {
+        height: 35px;
+        width: 120px;
+        left: calc(50% - 60px);
+        font-size: 20px;
+        top: -63px;
+    }
+
+    .small-cards-div {
+        height: 60px;
+        width: 155px !important;
+        position: relative;
+    }
+
+    .small-cards-div > .card {
+        height: 55px;
+        width: 37px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 12.5px;
+    }
+
+    .small-cards-div > .card > h4 {
+        font-size: 20px;
+    }
+
     
+    #submit-btn {
+        left: calc(50% - 190px);
+    }
 }

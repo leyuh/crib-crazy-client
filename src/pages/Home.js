@@ -67,7 +67,7 @@ const Home = () => {
         }
     }
 
-    return <div id="home">
+    return <div id="home" className="page">
         
         <div id="crib-div">
             <h2><i>The crib is:</i></h2>

@@ -190,3 +190,114 @@
     background-color: rgb(76, 168, 76);
     background-image: linear-gradient(rgb(106, 189, 106), rgb(76, 168, 76));
 }
+
+@media screen and (max-width: 650px) {
+    #round-summary {
+        height: 450px;
+        width: 350px;
+    
+        top: calc(50% - 285px);
+        left: calc(50% - 185px);
+    
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .rs-threw-label {
+        font-size: 20px;
+    }
+
+    #round-summary > h1 {
+        position: relative;
+        top: -20px;
+    }
+
+    #round-summary > h2 {
+        position: relative;
+        top: -45px;
+    }
+
+    #rs-initial-hand-div {
+        position: relative;
+        top: -70px;
+    }
+
+    .rs-summary-div {
+        height: 245px;
+        position: relative;
+        top: -145px;
+    }
+
+    .rs-summary-evaluation-div > .cards-div {
+        position: relative;
+        left: -7.5px;
+    }
+
+    .rs-summary-evaluation-div > .cards-div > .card {
+        margin: -10px;
+    }
+
+    .point-combo-div {
+        margin-left: 10px;
+    }
+
+    .point-combo-div > .card {
+        margin: -10px;
+    }
+
+
+    .rs-summary-evaluation-div {
+        position: relative;
+        top: -15px;
+    }
+
+    .rs-summary-evaluation-div > h2 {
+        font-size: 20px;
+        margin-left: -5px;
+        margin-right: -5px;
+        text-align: center;
+    }
+
+    .rs-summary-div > .rs-plr-label {
+        margin-top: 15px;
+    }
+
+    .rs-summary-div > .rs-threw-label {
+        margin-top: 25px;
+    }
+
+    .score-label {
+        margin: auto;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    #round-sum-continue-btn {
+        position: relative;
+        top: -410px;
+        float: right;
+        left: 0px;
+    }
+
+    #accuracy-rating-label {
+        position: relative;
+        top: -385px !important;
+        width: 200px;
+        text-align: left;
+        
+    }
+
+    #accuracy-percentage-label {
+        position: relative;
+        top: -315px !important;
+        height: 40px;
+        line-height: 40px;
+        width: 150px !important;
+        text-align: left !important;
+        left: 0px;
+        font-size: 35px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+}
