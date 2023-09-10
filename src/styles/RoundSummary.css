@@ -5,10 +5,10 @@
 
     background-color: rgb(48, 80, 43);
     border-radius: 30px;
-    border: 5px solid rgb(27, 50, 23);
+    border: 10px solid rgb(28, 49, 26);
 
     top: calc(50% - 460px);
-    left: calc(50% - 350px);
+    left: calc(50% - 360px);
 
 }
 
@@ -47,7 +47,7 @@
 }
 
 .rs-summary-div {
-    background-color: rgb(27, 50, 23);
+    background-color: rgb(28, 49, 26);
     border: 0px;
     height: 100%;
     width: calc(50% - 5px);
@@ -122,7 +122,7 @@
     width: 50px;
     float: right;
     margin: 0px;
-    margin-top: -25px;
+    margin-top: -20px;
     text-align: right;
 }
 
@@ -176,27 +176,25 @@
 }
 
 #round-sum-continue-btn {
+    left: calc(50% - 60px);
+    top: -120px;
+    border-radius: 5px;
     height: 35px;
     width: 120px;
     border: 0px;
-    border-radius: 5px;
+    position: relative;
     font-family: inherit;
     font-weight: bold;
-    font-size: 15px;
-    position: relative;
-    top: -117.5px;
-    left: calc(50% - 60px);
-    color: white;
-    background-color: rgb(76, 168, 76);
-    background-image: linear-gradient(rgb(106, 189, 106), rgb(76, 168, 76));
+    font-size: 18px;
+    background-color: rgb(147, 197, 123);
 }
 
 @media screen and (max-width: 650px) {
     #round-summary {
-        height: 450px;
-        width: 350px;
+        height: 90%;
+        width: 340px;
     
-        top: calc(50% - 285px);
+        top: calc(5% - 60px);
         left: calc(50% - 185px);
     
         border-radius: 10px;
@@ -220,12 +218,18 @@
     #rs-initial-hand-div {
         position: relative;
         top: -70px;
+        left: -2.5px;
+    }
+
+    #rs-plr-summaries-div {
+        height: calc(85% - 120px);
+        top: -80px;
+        width: calc(100% + 5px);
+        left: -2.5px;
     }
 
     .rs-summary-div {
-        height: 245px;
-        position: relative;
-        top: -145px;
+        width: calc(50% + 10px) !important;
     }
 
     .rs-summary-evaluation-div > .cards-div {
@@ -275,14 +279,14 @@
 
     #round-sum-continue-btn {
         position: relative;
-        top: -410px;
+        top: -180px;
         float: right;
         left: 0px;
     }
 
     #accuracy-rating-label {
         position: relative;
-        top: -385px !important;
+        top: -155px !important;
         width: 200px;
         text-align: left;
         
@@ -290,7 +294,7 @@
 
     #accuracy-percentage-label {
         position: relative;
-        top: -315px !important;
+        top: -85px !important;
         height: 40px;
         line-height: 40px;
         width: 150px !important;

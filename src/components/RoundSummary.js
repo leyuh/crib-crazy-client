@@ -15,7 +15,8 @@ const RoundSummary = (props) => {
         worstCombo,
         myCombo,
         cribIsMine,
-        resetRound
+        resetRound,
+        experienceRate
     } = props;
 
     const updateUserMostRecentRatings = async (newRating, userId) => {
@@ -23,6 +24,21 @@ const RoundSummary = (props) => {
             let response = await axios.put("http://localhost:3001/user/new-rating", {
                 _id: userId,
                 newRating
+            }, {
+                headers: {
+                    authorization: cookies.access_token
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const updateUserLevel = async (userId, amount) => {
+        try {
+            let response = await axios.put("http://localhost:3001/user/update-lvl", {
+                _id: userId,
+                amount
             }, {
                 headers: {
                     authorization: cookies.access_token
@@ -43,6 +59,7 @@ const RoundSummary = (props) => {
     useEffect(() => {
         if (cookies.access_token) {
             updateUserMostRecentRatings(accuracyRating, localStorage.getItem("userId"));
+            updateUserLevel(localStorage.getItem("userId"), experienceRate);
         }
     }, [])
 
@@ -83,7 +100,7 @@ const RoundSummary = (props) => {
         <button id="round-sum-continue-btn" onClick={() => {
             setShowRoundSummary(false);
             resetRound();
-        }}>CONTINUE</button>
+        }}>Continue</button>
 
 
     </div>

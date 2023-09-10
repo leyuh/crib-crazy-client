@@ -5,6 +5,29 @@
     margin-top: 50px !important;
 }
 
+#leaderboard-btn {
+    height: 50px;
+    width: 50px;
+    background-color: rgba(134, 159, 131, 0);
+    border: 0px;
+    border-radius: 30px;
+
+    position: absolute;
+    right: 10px;
+    top: -45px;
+}
+
+#leaderboard-btn > img {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    object-fit: contain;
+}
+
+#leaderboard-btn > img:hover {
+    cursor: grab;
+}
+
 #select-label {
     text-align: center;
     margin-bottom: 0px;
@@ -52,7 +75,7 @@
 #home-cards-div {
     background-color: rgb(47, 79, 42);
     border-radius: 30px;
-    border: 5px solid rgb(34, 57, 31);
+    border: 5px solid rgb(28, 49, 26);
     margin-top: 0px !important;
 }
 
@@ -141,24 +164,24 @@
     font-family: inherit;
     font-size: 15px;
     font-weight: bold;
-    top: -69px;
-    background-color: rgb(34, 57, 31);
+    top: -65px !important;
+    background-color: rgb(28, 49, 26);
     color: white;
 }
 
 #submit-btn {
-    height: 50px;
-    width: 140px;
+    left: calc(50% - 140px);
+    top: 20px;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+    border: 0px;
     position: relative;
-    left: calc(50% - 150px);
-    border: 3px solid rgb(34, 57, 31);
-    border-radius: 10px;
     font-family: inherit;
-    font-size: 25px;
     font-weight: bold;
-    background-color: rgb(76, 168, 76);
-    background-image: linear-gradient(rgb(106, 189, 106), rgb(76, 168, 76));
-    color: black;
+    font-size: 18px;
+    background-color: rgb(28, 49, 26);
+    color: white;
 }
 
 @media screen and (max-width: 650px) {
@@ -166,6 +189,10 @@
     #crib-div {
         top: -20px;
         margin-bottom: -50px;
+    }
+
+    #select-label {
+        font-size: 18px;
     }
 
     #home-cards-div {
@@ -206,11 +233,11 @@
     }
 
     #cards-sort-btn {
-        height: 35px;
-        width: 120px;
-        left: calc(50% - 60px);
-        font-size: 20px;
-        top: -63px;
+        height: 30px;
+        width: 100px;
+        left: calc(50% - 50px);
+        font-size: 18px;
+        top: -60px !important;
     }
 
     .small-cards-div {
@@ -237,6 +264,6 @@
 
     
     #submit-btn {
-        left: calc(50% - 190px);
+        left: calc(50% - 160px);
     }
 }

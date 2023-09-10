@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import leaderboardIcon from "../images/leaderboard-icon.png";
+
 import "../styles/Home.css";
 
 import Deck from "../models/Deck.js";
@@ -7,6 +9,7 @@ import Hand from "../models/Hand.js";
 import Card from "../models/Card.js";
 
 import RoundSummary from "../components/RoundSummary.js";
+import Leaderboard from "../components/Leaderboard.js";
 
 const Home = () => {
 
@@ -20,8 +23,11 @@ const Home = () => {
     const [myCombo, setMyCombo] = useState(null);
 
     const [showRoundSummary, setShowRoundSummary] = useState(false);
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
 
     const [displayCards, setDisplayCards] = useState(null);
+
+    const experienceRate = 0.05;
 
     useEffect(() => {
         resetRound();
@@ -69,6 +75,10 @@ const Home = () => {
 
     return <div id="home" className="page">
         
+        <button id="leaderboard-btn" onClick={() => setShowLeaderboard(prev => !prev)}>
+            <img src={leaderboardIcon}/>
+        </button>
+
         <div id="crib-div">
             <h2><i>The crib is:</i></h2>
             <h1 id="crib-owner-label" className={`${cribIsMine ? "your-crib" : "their-crib"}`}>
@@ -138,6 +148,11 @@ const Home = () => {
             myCombo={myCombo}
             cribIsMine={cribIsMine}
             resetRound={resetRound}
+            experienceRate={experienceRate}
+        />}
+
+        {showLeaderboard && <Leaderboard 
+            setShowLeaderboard={setShowLeaderboard}
         />}
     </div>
 }
