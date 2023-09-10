@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import "../styles/RoundSummary.css";
 
+import axios from "axios";
+
 const RoundSummary = (props) => {
+    const [cookies, setCookies] = useCookies(["access_token"]);
+
     const {
         setShowRoundSummary,
         originalHand,
@@ -13,10 +18,34 @@ const RoundSummary = (props) => {
         resetRound
     } = props;
 
+    const updateUserMostRecentRatings = async (newRating, userId) => {
+        try {
+            let response = await axios.put("http://localhost:3001/user/new-rating", {
+                _id: userId,
+                newRating
+            }, {
+                headers: {
+                    authorization: cookies.access_token
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     const getAccuracyRating = (plrScore, bestPosScore, worstPosScore) => {
         let range = bestPosScore - worstPosScore;
         return Math.floor(((plrScore - worstPosScore) / range) * 100);
     }
+
+    let accuracyRating = getAccuracyRating(myCombo["overall score"], bestCombo["overall score"], worstCombo["overall score"]);
+
+    useEffect(() => {
+        if (cookies.access_token) {
+            updateUserMostRecentRatings(accuracyRating, localStorage.getItem("userId"));
+        }
+    }, [])
+
 
     return <div id="round-summary">
         <h1>ROUND SUMMARY</h1>
@@ -46,7 +75,7 @@ const RoundSummary = (props) => {
         </div>
 
         <h1 id="accuracy-percentage-label">
-            {getAccuracyRating(myCombo["overall score"], bestCombo["overall score"], worstCombo["overall score"])}%
+            {accuracyRating}%
         </h1>
         
         <h3 id="accuracy-rating-label">ACCURACY RATING</h3>
