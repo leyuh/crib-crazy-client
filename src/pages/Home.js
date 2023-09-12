@@ -80,17 +80,17 @@ const Home = () => {
         </button>
 
         <div id="crib-div">
-            <h2><i>The crib is:</i></h2>
+            <h2 className="font-primary"><i>The crib is:</i></h2>
             <h1 id="crib-owner-label" className={`${cribIsMine ? "your-crib" : "their-crib"}`}>
                 {cribIsMine ? "YOURS" : "THEIRS"}
             </h1>
         </div>
 
         <div>
-            <h2 id="select-label">Select two cards to send to the crib.</h2>
+            <h2 id="select-label" className="font-primary">Select two cards to send to the crib.</h2>
         </div>
 
-        <div className="cards-div large-cards-div" id="home-cards-div">
+        <div className="cards-div large-cards-div secondary primary-border" id="home-cards-div">
             {displayCards && displayCards.map((card, i) => {
                 return <div className={`card ${card.isRed ? "red" : "black"} ${selectedCards.indexOf(card) !== -1 && "selected"}`} key={i} onClick={() => {
                     if (selectedCards.indexOf(card) === -1) {
@@ -103,11 +103,11 @@ const Home = () => {
             })}
         </div>
 
-        <button id="cards-sort-btn" onClick={() => {
+        <button id="cards-sort-btn" className="primary font-secondary" onClick={() => {
             setDisplayCards(myHand.sortedCards);
         }}>Sort</button>
 
-        <button id="submit-btn" onClick={() => {
+        <button id="submit-btn" className="primary font-secondary" onClick={() => {
 
             let myComboIsBestCombo = true;
 

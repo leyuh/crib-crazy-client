@@ -73,9 +73,8 @@
 }
 
 #home-cards-div {
-    background-color: rgb(47, 79, 42);
     border-radius: 30px;
-    border: 5px solid rgb(28, 49, 26);
+    border: 5px solid;
     margin-top: 0px !important;
 }
 
@@ -166,7 +165,6 @@
     font-weight: bold;
     top: -65px !important;
     background-color: rgb(28, 49, 26);
-    color: white;
 }
 
 #submit-btn {
@@ -181,7 +179,6 @@
     font-weight: bold;
     font-size: 18px;
     background-color: rgb(28, 49, 26);
-    color: white;
 }
 
 @media screen and (max-width: 650px) {

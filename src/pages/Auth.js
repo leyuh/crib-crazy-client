@@ -106,7 +106,7 @@ const Form = ({
     currAuthDiv,
     setCurrAuthDiv
 }) => {
-    return <div className="auth-container">
+    return <div className="auth-container secondary primary-border">
         <form onSubmit={onSubmit}>
             <h2>{label}</h2>
 

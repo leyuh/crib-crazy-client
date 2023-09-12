@@ -2,17 +2,18 @@
     height: 225px;
     width: 340px;
     position: relative;
-    left: calc(50% - 185px);
+    left: calc(50% - 190px);
     margin-top: 50px;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 20px 10px 20px 10px;
     background-color: rgb(47, 79, 42);
     color: rgb(213, 213, 213);
-    border: 5px solid rgb(34, 57, 31);
+    border: 10px solid rgb(34, 57, 31);
 }
 
 .auth-container > form > h2 {
     color: white;
+    font-size: 26px;
 }
 
 .form-group {

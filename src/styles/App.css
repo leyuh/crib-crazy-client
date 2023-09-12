@@ -10,7 +10,7 @@
 #app {
     height: 100%;
     width: 100%;
-    background-color: rgb(154, 177, 152);
+    background-color: inherit;
     top: 0px;
     left: 0px;
     position: absolute;

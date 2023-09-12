@@ -19,7 +19,6 @@
 #round-summary > h1 {
     width: 100%;
     text-align: center;
-    color: white;
     margin-bottom: 0px;
     top: 0px;
 }
@@ -27,7 +26,6 @@
 #round-summary > h2 {
     width: 100%;
     text-align: center;
-    color: black;
     top: -20px;
 }
 
@@ -54,7 +52,6 @@
     overflow-y: scroll;
     overflow-x: hidden;
     border-radius: 10px;
-    color: white;
 }
 
 .rs-plr-label {
@@ -76,12 +73,10 @@
     text-align: center;
     position: relative;
     top: -50px;
-    color: black;
     margin-bottom: -30px;
 }
 
 .points-list {
-    color: black;
     list-style: none;
 }
 
@@ -142,9 +137,6 @@
     height: 50px;
 }
 
-.total-li {
-    color: white;
-}
 
 .score-label {
     margin-right: 10px;
@@ -156,18 +148,16 @@
 #accuracy-rating-label {
     height: 25px;
     width: 100%;
-    color: white;
     position: relative;
     top: -97.5px !important;
     text-align: center;
-    color: black !important;
     font-weight: bolder;
     font-size: 15px;
     z-index: 5;
 }
 
 #accuracy-percentage-label {
-    background-color: rgb(42, 74, 37);
+    background-color: rgba(0, 0, 0, 0.1);
     top: -75px !important;
     font-size: 50px;
     position: relative;

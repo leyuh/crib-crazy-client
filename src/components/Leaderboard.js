@@ -37,18 +37,18 @@ const Leaderboard = (props) => {
         fetchUsers();
     }, [])
 
-    return <div id="leaderboard">
-        <h1>Leaderboard</h1>
+    return <div id="leaderboard" className="primary">
+        <h1 className="font-secondary">Leaderboard</h1>
         <ul id="leaderboard-list">
             {users.map((user, i) => {
-                return <li key={i} className={`leaderboard-item ${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : ""}`}>
+                return <li key={i} className={`leaderboard-item secondary ${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : "font-secondary"}`}>
                     <h3>{user.username}</h3>
                     <h5>{getAverageScore(user.mostRecentRatings)}%</h5>
                     <h5>lvl {Math.floor(user.level)}</h5>
                 </li>
             })}
         </ul>
-        <button id="leaderboard-close-btn" onClick={() => setShowLeaderboard(false)}>Close</button>
+        <button id="leaderboard-close-btn" className="font-primary" onClick={() => setShowLeaderboard(false)}>Close</button>
     </div>
 }
 

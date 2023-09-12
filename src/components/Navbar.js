@@ -14,7 +14,7 @@ const Navbar = () => {
         navigate("/auth");
     }
 
-    return <div id="navbar">
+    return <div id="navbar" className="primary font-secondary">
         <Link to={"/"} className="nav-btn"> Home </Link>
         {!cookies.access_token ? 
             <Link to={"/auth"} className="nav-btn"> Login </Link>

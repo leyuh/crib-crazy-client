@@ -64,9 +64,9 @@ const RoundSummary = (props) => {
     }, [])
 
 
-    return <div id="round-summary">
-        <h1>ROUND SUMMARY</h1>
-        <h2>{cribIsMine ? "YOUR" : "THEIR"} CRIB</h2>
+    return <div id="round-summary" className="secondary primary-border">
+        <h1 className="font-secondary">ROUND SUMMARY</h1>
+        <h2 className="font-primary">{cribIsMine ? "YOUR" : "THEIR"} CRIB</h2>
 
         <div className="cards-div med-cards-div" id="rs-initial-hand-div">
             {displayCards.map((card, i) => {
@@ -91,13 +91,13 @@ const RoundSummary = (props) => {
 
         </div>
 
-        <h1 id="accuracy-percentage-label">
+        <h1 id="accuracy-percentage-label" className="font-secondary">
             {accuracyRating}%
         </h1>
         
-        <h3 id="accuracy-rating-label">ACCURACY RATING</h3>
+        <h3 id="accuracy-rating-label" className="font-primary">ACCURACY RATING</h3>
 
-        <button id="round-sum-continue-btn" onClick={() => {
+        <button id="round-sum-continue-btn" className="font-primary" onClick={() => {
             setShowRoundSummary(false);
             resetRound();
         }}>Continue</button>
@@ -113,8 +113,8 @@ const SummaryDiv = (props) => {
         combo
     } = props;
 
-    return <div id={isPlr ? "rs-plr-summary-div" : "rs-bot-summary-div"} className="rs-summary-div">
-        <h1 className="rs-plr-label">{isPlr ? "YOU" : "BOT"}</h1>
+    return <div id={isPlr ? "rs-plr-summary-div" : "rs-bot-summary-div"} className="rs-summary-div primary">
+        <h1 className="rs-plr-label font-secondary">{isPlr ? "YOU" : "BOT"}</h1>
 
         <div className="cards-div small-cards-div rs-crib-div">
             {combo["crib cards"].map((card, i) => {
@@ -124,7 +124,7 @@ const SummaryDiv = (props) => {
                 </div>
             })}
         </div>
-        <h2 className="rs-threw-label">{isPlr ? "YOU THREW" : "BEST THROW"}</h2>
+        <h2 className="rs-threw-label font-primary">{isPlr ? "YOU THREW" : "BEST THROW"}</h2>
 
         <SummaryEvaluationDiv 
             isHand={true}
@@ -141,7 +141,7 @@ const SummaryDiv = (props) => {
             potPoints={combo["potential crib points"]}
         />
 
-        <h2 className="score-label">Throw Score: {combo["overall score"]}</h2>
+        <h2 className="score-label font-secondary">Throw Score: {combo["overall score"]}</h2>
 
     </div>
 }
@@ -165,7 +165,7 @@ const SummaryEvaluationDiv = (props) => {
             })}
         </div>
 
-        <h2>{isHand ? "HAND" : "CRIB"} POINTS:</h2>
+        <h2 className="font-secondary">{isHand ? "HAND" : "CRIB"} POINTS:</h2>
         <ul className="points-list">
             {points.map((point, i) => {
                 let typeOfPoint = point[0];
@@ -182,20 +182,20 @@ const SummaryEvaluationDiv = (props) => {
                             </div>
                         })}
                     </div>
-                    <h4 className="type-of-point-label">{typeOfPoint}</h4>
+                    <h4 className="type-of-point-label font-primary">{typeOfPoint}</h4>
 
-                    <h2 className="point-count-label">{pointCount}</h2>
+                    <h2 className="point-count-label font-primary">{pointCount}</h2>
 
                     <hr/>
                 </li>
             })}
 
-            <li className="total-li">
+            <li className="total-li font-secondary">
                 <h4 className="type-of-point-label">Total:</h4>
                 <h2 className="point-count-label">{pointsTotal}</h2>
             </li>
 
-            <li className="total-li">
+            <li className="total-li font-secondary">
                 <h4 className="type-of-point-label">Potential:</h4>
                 <h2 className="point-count-label">{potPoints}</h2>
             </li>
