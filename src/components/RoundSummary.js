@@ -59,7 +59,7 @@ const RoundSummary = (props) => {
     useEffect(() => {
         if (cookies.access_token) {
             updateUserMostRecentRatings(accuracyRating, localStorage.getItem("userId"));
-            updateUserLevel(localStorage.getItem("userId"), experienceRate);
+            updateUserLevel(localStorage.getItem("userId"), (experienceRate * (accuracyRating)));
         }
     }, [])
 

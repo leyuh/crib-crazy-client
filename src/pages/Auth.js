@@ -9,13 +9,23 @@ import "../styles/Auth.css";
 const Auth = () => {
     const [currAuthDiv, setCurrAuthDiv] = useState("register");
 
+    const [cookies, setCookies] = useCookies(["access_token"]);
+
+    const navigate = useNavigate();
+
     return <div id="auth" className="page default">
         {currAuthDiv === "register" ? <Register 
             currAuthDiv={currAuthDiv}
             setCurrAuthDiv={setCurrAuthDiv}
+            cookies={cookies}
+            setCookies={setCookies}
+            navigate={navigate}
         /> : <Login
             currAuthDiv={currAuthDiv}
             setCurrAuthDiv={setCurrAuthDiv} 
+            cookies={cookies}
+            setCookies={setCookies}
+            navigate={navigate}
         />}
     </div>
 }
@@ -23,15 +33,15 @@ const Auth = () => {
 const Login = (props) => {
     const {
         currAuthDiv,
-        setCurrAuthDiv
+        setCurrAuthDiv,
+        cookies,
+        setCookies,
+        navigate
     } = props;
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const [cookies, setCookies] = useCookies(["access_token"]);
-
-    const navigate = useNavigate();
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -65,7 +75,10 @@ const Login = (props) => {
 const Register = (props) => {
     const {
         currAuthDiv,
-        setCurrAuthDiv
+        setCurrAuthDiv,
+        cookies,
+        setCookies,
+        navigate
     } = props;
 
     const [username, setUsername] = useState("");
@@ -79,6 +92,15 @@ const Register = (props) => {
                 username,
                 password
             })
+
+            const res = await axios.post("http://localhost:3001/auth/login", {
+                username,
+                password
+            });
+            
+            setCookies("access_token", res.data.token);
+            window.localStorage.setItem("userId", res.data.userId);
+            navigate("/");
         } catch (err) {
             console.error(err);
         }

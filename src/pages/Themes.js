@@ -42,7 +42,7 @@ const Themes = ({ theme, setTheme }) => {
                         </li>
                     } else {
                         return <li key={i} className="theme-li locked">
-                            <h1>Unlock at lvl {THEMES[val]}</h1>
+                            <h1>Unlocks at lvl {THEMES[val]}</h1>
                         </li>
                     }
 

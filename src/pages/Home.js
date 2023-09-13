@@ -27,7 +27,7 @@ const Home = () => {
 
     const [displayCards, setDisplayCards] = useState(null);
 
-    const experienceRate = 0.05;
+    const experienceRate = 0.0005;
 
     useEffect(() => {
         resetRound();

@@ -14,7 +14,7 @@ const Leaderboard = (props) => {
         if (scores.length === 0 ) return 100;
         let total = 0;
         scores.map(score => total += score);
-        total = Math.floor(total / scores.length);
+        total = Math.floor(total / scores.length * 10) / 10;
         return total;
     }
 
@@ -48,7 +48,7 @@ const Leaderboard = (props) => {
                 </li>
             })}
         </ul>
-        <button id="leaderboard-close-btn" className="font-primary" onClick={() => setShowLeaderboard(false)}>Close</button>
+        <button id="leaderboard-close-btn" className="font-secondary primary" onClick={() => setShowLeaderboard(false)}>Close</button>
     </div>
 }
 

@@ -33,7 +33,7 @@
 }
 
 .leaderboard-item > h3 {
-    font-size: 22px;
+    font-size: 24px;
     text-align: left;
     width: 140px;
     margin-right: 0px;
@@ -43,10 +43,10 @@
 
 .leaderboard-item > h5 {
     float: right;
-    width: 50px;
+    width: 55px;
     text-align: right;
     right: 0px;
-    top: 25px;
+    top: 20px;
 }
 
 .leaderboard-item > * {
@@ -54,7 +54,7 @@
     margin: 0px;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 20px;
     position: relative;
 }
 
@@ -74,7 +74,6 @@
     font-family: inherit;
     font-weight: bold;
     font-size: 18px;
-    background-color: rgb(147, 197, 123);
 }
 
 @media screen and (max-width: 650px) {

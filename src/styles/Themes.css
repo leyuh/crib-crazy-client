@@ -1,9 +1,9 @@
 #themes > div {
-    height: 600px;
+    height: 550px;
     width: 350px;
     position: absolute;
     left: calc(50% - 185px);
-    top: calc(50% - 360px);
+    top: calc(50% - 290px);
     border: 10px solid;
     border-radius: 15px; 
 }
@@ -18,7 +18,7 @@
     list-style: none;
     position: relative;
     top: 10px;
-    height: 500px;
+    height: 450px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -42,7 +42,6 @@
     cursor: grab;
 }
 
-.locked {
-    background-color: rgb(150, 150, 150);
-    border: 0px;
+.locked > h1 {
+    color: rgba(150, 150, 150, 0.5);
 }
