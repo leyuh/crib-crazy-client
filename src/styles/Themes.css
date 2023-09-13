@@ -1,16 +1,48 @@
+#themes > div {
+    height: 600px;
+    width: 350px;
+    position: absolute;
+    left: calc(50% - 185px);
+    top: calc(50% - 360px);
+    border: 10px solid;
+    border-radius: 15px; 
+}
 
-.default { background-color: rgb(154, 177, 152) !important; }
+#themes > div > h1 {
+    text-align: center;
+    position: relative;
+    top: 20px;
+}
 
-.default * .primary { background-color: rgb(28, 49, 26) !important; }
-.default > .primary { background-color: rgb(28, 49, 26) !important; }
+#theme-list {
+    list-style: none;
+    position: relative;
+    top: 10px;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 
-.default * .primary-border { border-color: rgb(28, 49, 26) !important; }
+.theme-li {
+    margin-left: -30px;
+    width: 330px;
+    margin-bottom: 15px;
+    height: 50px;
+    border-radius: 5px;
+}
 
-.default * .secondary { background-color: rgb(47, 79, 42) !important; }
+.theme-li > h1 {
+    font-size: 22px;
+    text-align: center;
+    height: 100%;
+    line-height: 50px;
+}
 
-.default * .font-primary { color: rgb(5, 5, 8) !important; }
-.default > .font-primary { color: rgb(5, 5, 8) !important; }
+.unlocked > h1:hover {
+    cursor: grab;
+}
 
-.default * .font-secondary { color: rgb(248, 248, 245) !important; }
-.default > .font-secondary { color: rgb(248, 248, 245) !important; }
-
+.locked {
+    background-color: rgb(150, 150, 150);
+    border: 0px;
+}

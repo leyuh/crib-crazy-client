@@ -9,7 +9,7 @@ import "../styles/Auth.css";
 const Auth = () => {
     const [currAuthDiv, setCurrAuthDiv] = useState("register");
 
-    return <div id="auth" className="page">
+    return <div id="auth" className="page default">
         {currAuthDiv === "register" ? <Register 
             currAuthDiv={currAuthDiv}
             setCurrAuthDiv={setCurrAuthDiv}

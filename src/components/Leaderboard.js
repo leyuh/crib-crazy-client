@@ -37,11 +37,11 @@ const Leaderboard = (props) => {
         fetchUsers();
     }, [])
 
-    return <div id="leaderboard" className="primary">
+    return <div id="leaderboard" className="secondary primary-border">
         <h1 className="font-secondary">Leaderboard</h1>
         <ul id="leaderboard-list">
             {users.map((user, i) => {
-                return <li key={i} className={`leaderboard-item secondary ${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : "font-secondary"}`}>
+                return <li key={i} className={`leaderboard-item primary ${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : "font-secondary"}`}>
                     <h3>{user.username}</h3>
                     <h5>{getAverageScore(user.mostRecentRatings)}%</h5>
                     <h5>lvl {Math.floor(user.level)}</h5>

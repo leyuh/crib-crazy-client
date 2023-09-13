@@ -5,7 +5,8 @@
     top: calc(50% - 410px);
     position: absolute;
 
-    border-radius: 10px;
+    border-radius: 15px;
+    border: 10px solid;
 }
 
 #leaderboard > h1 {
@@ -80,7 +81,7 @@
     #leaderboard {
         height: 500px;
         width: 340px;
-        left: calc(50% - 170px);
+        left: calc(50% - 180px);
         top: calc(50% - 310px);
     }
 
