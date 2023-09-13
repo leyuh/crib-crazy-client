@@ -7,6 +7,7 @@
 
     border-radius: 15px;
     border: 10px solid;
+    z-index: 7;
 }
 
 #leaderboard > h1 {

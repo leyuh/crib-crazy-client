@@ -10,6 +10,7 @@
     top: calc(50% - 460px);
     left: calc(50% - 360px);
 
+    z-index: 6;
 }
 
 #round-summary > * {

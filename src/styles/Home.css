@@ -69,13 +69,14 @@
 
     margin-left: auto;
     margin-right: auto;
-
+    position: relative;
 }
 
 #home-cards-div {
     border-radius: 30px;
-    border: 5px solid;
+    border: 10px solid;
     margin-top: 0px !important;
+    z-index: 3;
 }
 
 .card {
@@ -153,18 +154,18 @@
 }
 
 #cards-sort-btn {
-    height: 20px;
+    height: 22px;
     width: 80px;
     position: relative;
     left: calc(50% - 40px);
     border: 0px solid rgb(34, 57, 31);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    font-family: inherit;
     font-size: 15px;
     font-weight: bold;
-    top: -65px !important;
+    top: -61px !important;
     background-color: rgb(28, 49, 26);
+    z-index: 1;
 }
 
 #submit-btn {
@@ -175,7 +176,6 @@
     width: 120px;
     border: 0px;
     position: relative;
-    font-family: inherit;
     font-weight: bold;
     font-size: 18px;
     background-color: rgb(28, 49, 26);
@@ -196,7 +196,7 @@
         width: 360px;
         height: 95px;
         position: relative;
-        left: calc(50% - 188px) !important;
+        left: calc(50% - 190px) !important;
         border-radius: 10px;
     }
 
