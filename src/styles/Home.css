@@ -51,10 +51,10 @@
 }
 
 .your-crib {
-    color: green;
+    color: green !important;
 }
 .their-crib {
-    color: rgb(207, 22, 22);
+    color: rgb(207, 22, 22) !important;
 }
 
 .cards-div {
@@ -86,7 +86,6 @@
     border-radius: 5px;
     border: 3px solid rgb(145, 0, 0);
     font-weight: 900;
-    
 }
 
 .large-cards-div {
@@ -141,12 +140,12 @@
     color: inherit;
 }
 
-.red {
-    color: rgb(245, 0, 0);
+.red > h4 {
+    color: rgb(245, 0, 0) !important;
 }
 
-.black {
-    color: black;
+.black > h4 {
+    color: black !important;
 }
 
 .selected {

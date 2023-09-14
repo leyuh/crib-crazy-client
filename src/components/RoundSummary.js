@@ -49,6 +49,52 @@ const RoundSummary = (props) => {
         }
     }
 
+    const updateHitMissCount = async (_id, isHit) => {
+        try {
+            let response = await axios.put("http://localhost:3001/user/update-hit-miss-count", {
+                _id,
+                isHit
+            }, {
+                headers: {
+                    authorization: cookies.access_token
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const updateHitStreak = async (_id, isHit) => {
+        try {
+            let response = await axios.put("http://localhost:3001/user/update-hit-streak", {
+                _id,
+                isHit
+            }, {
+                headers: {
+                    authorization: cookies.access_token
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const updateHighestThrowScore = async (_id, throwScore) => {
+        try {
+            let response = await axios.put("http://localhost:3001/user/update-highest-throw-score", {
+                _id,
+                throwScore
+            }, {
+                headers: {
+                    authorization: cookies.access_token
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+
     const getAccuracyRating = (plrScore, bestPosScore, worstPosScore) => {
         let range = bestPosScore - worstPosScore;
         return Math.floor(((plrScore - worstPosScore) / range) * 100);
@@ -60,6 +106,12 @@ const RoundSummary = (props) => {
         if (cookies.access_token) {
             updateUserMostRecentRatings(accuracyRating, localStorage.getItem("userId"));
             updateUserLevel(localStorage.getItem("userId"), (experienceRate * (accuracyRating)));
+
+            let isHit = accuracyRating === 100;
+            updateHitMissCount(localStorage.getItem("userId"), isHit);
+            updateHitStreak(localStorage.getItem("userId"), isHit);
+            updateHighestThrowScore(localStorage.getItem("userId"), myCombo["overall score"]);
+
         }
     }, [])
 
@@ -119,7 +171,7 @@ const SummaryDiv = (props) => {
         <div className="cards-div small-cards-div rs-crib-div">
             {combo["crib cards"].map((card, i) => {
                 return <div className={` card ${card.isRed ? "red" : "black"}`} key={i}>
-                    <h4>{card.rank}</h4>
+                    <h4 className="font-primary">{card.rank}</h4>
                     <h4>{card.suitImg}</h4>
                 </div>
             })}
@@ -159,7 +211,7 @@ const SummaryEvaluationDiv = (props) => {
         <div className="cards-div small-cards-div">
             {cards.map((card, i) => {
                 return <div className={` card ${card.isRed ? "red" : "black"}`} key={i}>
-                    <h4>{card.rank}</h4>
+                    <h4 className="font-primary">{card.rank}</h4>
                     <h4>{card.suitImg}</h4>
                 </div>
             })}
@@ -177,7 +229,7 @@ const SummaryEvaluationDiv = (props) => {
                     <div className="cards-div small-cards-div point-combo-div">
                         {cards.map((card, i) => {
                             return <div className={` card ${card.isRed ? "red" : "black"}`} key={i}>
-                                <h4>{card.rank}</h4>
+                                <h4 className="font-primary">{card.rank}</h4>
                                 <h4>{card.suitImg}</h4>
                             </div>
                         })}

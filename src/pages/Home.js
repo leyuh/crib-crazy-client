@@ -81,7 +81,7 @@ const Home = () => {
 
         <div id="crib-div">
             <h2 className="font-primary"><i>The crib is:</i></h2>
-            <h1 id="crib-owner-label" className={`${cribIsMine ? "your-crib" : "their-crib"}`}>
+            <h1 id="crib-owner-label" className={`${cribIsMine ? "your-crib" : "their-crib"} font-primary`}>
                 {cribIsMine ? "YOURS" : "THEIRS"}
             </h1>
         </div>
@@ -97,7 +97,7 @@ const Home = () => {
                         addSelectedCard(card);
                     }
                 }}>
-                    <h4>{card.rank}</h4>
+                    <h4 className="font-primary">{card.rank}</h4>
                     <h4>{card.suitImg}</h4>
                 </div>
             })}

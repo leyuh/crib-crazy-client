@@ -9,11 +9,11 @@
 
 .default * .secondary { background-color: rgb(47, 79, 42) !important; }
 
-.default * .font-primary { color: rgb(5, 5, 8) !important; font-family: default; }
-.default > .font-primary { color: rgb(5, 5, 8) !important; font-family: default; }
+.default * .font-primary { color: rgb(5, 5, 8); font-family: 'Times New Roman', Times, serif; }
+.default > .font-primary { color: rgb(5, 5, 8); font-family: 'Times New Roman', Times, serif; }
 
-.default * .font-secondary { color: rgb(248, 248, 245) !important; font-family: default; }
-.default > .font-secondary { color: rgb(248, 248, 245) !important; font-family: default; }
+.default * .font-secondary { color: rgb(248, 248, 245) !important; font-family: 'Times New Roman', Times, serif }
+.default > .font-secondary { color: rgb(248, 248, 245) !important; font-family: 'Times New Roman', Times, serif}
 
 
 .sky { background-color: rgb(153, 211, 224) !important; }
@@ -25,8 +25,8 @@
 
 .sky * .secondary { background-color: rgb(78, 174, 193) !important; }
 
-.sky * .font-primary { color: rgb(5, 5, 10) !important; font-family: 'Gill Sans', 'Gill Sans MT', Calibri }
-.sky > .font-primary { color: rgb(5, 5, 10) !important; font-family: 'Gill Sans', 'Gill Sans MT', Calibri }
+.sky * .font-primary { color: rgb(5, 5, 10); font-family: 'Gill Sans', 'Gill Sans MT', Calibri }
+.sky > .font-primary { color: rgb(5, 5, 10); font-family: 'Gill Sans', 'Gill Sans MT', Calibri }
 
 .sky * .font-secondary { color: rgb(245, 245, 250) !important; font-family: 'Gill Sans', 'Gill Sans MT', Calibri }
 .sky > .font-secondary { color: rgb(245, 245, 250) !important; font-family: 'Gill Sans', 'Gill Sans MT', Calibri }
@@ -41,8 +41,8 @@
 
 .space * .secondary { background-color: rgb(219, 219, 219) !important; }
 
-.space * .font-primary { color: rgb(245, 245, 250) !important; font-family: "Trispace" }
-.space > .font-primary { color: rgb(245, 245, 250) !important; font-family: "Trispace" }
+.space * .font-primary { color: rgb(245, 245, 250); font-family: "Trispace" }
+.space > .font-primary { color: rgb(245, 245, 250); font-family: "Trispace" }
 
 .space * .font-secondary { color: rgb(5, 5, 10) !important; font-family: "Trispace" }
 .space > .font-secondary { color: rgb(5, 5, 10) !important; font-family: "Trispace" }

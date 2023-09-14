@@ -9,6 +9,7 @@ const Leaderboard = (props) => {
     } = props;
 
     const [users, setUsers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const getAverageScore = (scores) => {
         if (scores.length === 0 ) return 100;
@@ -16,6 +17,10 @@ const Leaderboard = (props) => {
         scores.map(score => total += score);
         total = Math.floor(total / scores.length * 10) / 10;
         return total;
+    }
+    
+    const getAge = (oldDate, now) => {
+        return Math.ceil((now - oldDate) / 8.64e7);
     }
 
     useEffect(() => {
@@ -41,10 +46,54 @@ const Leaderboard = (props) => {
         <h1 className="font-secondary">Leaderboard</h1>
         <ul id="leaderboard-list">
             {users.map((user, i) => {
-                return <li key={i} className={`leaderboard-item primary ${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : "font-secondary"}`}>
-                    <h3>{user.username}</h3>
+                return <li key={i} className={`font-primary leaderboard-item ${selectedUser === user ? "selected-l-item" : ""} primary`} onClick={() => {
+                    if (selectedUser === user) {
+                        setSelectedUser(null);
+                    } else {
+                        setSelectedUser(user);
+                    }
+                }}>
+                    <h3 className={`${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : "font-secondary"}`}>{user.username}</h3>
                     <h5>{getAverageScore(user.mostRecentRatings)}%</h5>
                     <h5>lvl {Math.floor(user.level)}</h5>
+
+                    {(selectedUser === user) && <div id="user-stats">
+                        <h3 className="font-primary">Unnecessary User Stats</h3>
+                        <ul>
+                            <li>
+                                <h6 className="us-li-label font-primary">Rank:</h6>
+                                <h6 className="us-li-amount font-secondary">{i+1}</h6>
+                            </li>
+                            <li>
+                                <h6 className="us-li-label font-primary">Level:</h6>
+                                <h6 className="us-li-amount font-secondary">{user.level}</h6>
+                            </li>
+                            <li>
+                                <h6 className="us-li-label font-primary">Avg Accuracy Rating:</h6>
+                                <h6 className="us-li-amount font-secondary">{getAverageScore(user.mostRecentRatings)}%</h6>
+                            </li>
+                            <li>
+                                <h6 className="us-li-label font-primary">Hit/Miss Ratio:</h6>
+                                <h6 className="us-li-amount font-secondary">{user.hitCount}/{user.missCount}</h6>
+                            </li>
+                            <li>
+                                <h6 className="us-li-label font-primary">Longest Hit Streak:</h6>
+                                <h6 className="us-li-amount font-secondary">{user.longestHitStreak}</h6>
+                            </li>
+                            <li>
+                                <h6 className="us-li-label font-primary">Highest Throw Score:</h6>
+                                <h6 className="us-li-amount font-secondary">{user.highestThrowScore}</h6>
+                            </li>
+                            <li>
+                                <h6 className="us-li-label font-primary">Account Creation Date:</h6>
+                                <h6 className="us-li-amount font-secondary">{new Date(user.accountCreationDate).toJSON().slice(2, 10)}</h6>
+                            </li>
+                            <li>
+                                <h6 className="us-li-label font-primary">Account Age:</h6>
+                                <h6 className="us-li-amount font-secondary">{getAge(new Date(user.accountCreationDate), new Date())}</h6>
+                            </li>
+                        </ul>
+                    </div>}
                 </li>
             })}
         </ul>
