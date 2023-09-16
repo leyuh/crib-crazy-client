@@ -3,6 +3,8 @@ import axios from "axios";
 
 import "../styles/Leaderboard.css";
 
+import friendIcon from "../images/leaderboard-icon.png";
+
 const Leaderboard = (props) => {
     const {
         setShowLeaderboard
@@ -29,10 +31,8 @@ const Leaderboard = (props) => {
             try {
                 let response = await axios.get("http://localhost:3001/user/");
                 setUsers(response.data.sort((a, b) => {
-                    if (Math.floor(a.level) > Math.floor(b.level)) return -1;
-                    if (Math.floor(a.level) < Math.floor(b.level)) return 1;
-                    if (getAverageScore(a.mostRecentRatings) > getAverageScore(b.mostRecentRatings)) return -1;
-                    if (getAverageScore(a.mostRecentRatings) < getAverageScore(b.mostRecentRatings)) return 1;
+                    if (a.level > b.level) return -1;
+                    if (a.level < b.level) return 1;
                     return 0;
                 }));
             } catch (err) {
@@ -46,15 +46,16 @@ const Leaderboard = (props) => {
         <h1 className="font-secondary">Leaderboard</h1>
         <ul id="leaderboard-list">
             {users.map((user, i) => {
-                return <li key={i} className={`font-primary leaderboard-item ${selectedUser === user ? "selected-l-item" : ""} primary`} onClick={() => {
+                let isFriend = false;
+                return <li key={i} className={`font-primary leaderboard-item ${selectedUser === user ? "selected-l-item" : ""} ${isFriend && "friend"} primary`} onClick={() => {
                     if (selectedUser === user) {
                         setSelectedUser(null);
                     } else {
                         setSelectedUser(user);
                     }
                 }}>
+                    {isFriend && <img className="friend-icon" src={friendIcon}/>}
                     <h3 className={`${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : "font-secondary"}`}>{user.username}</h3>
-                    <h5>{getAverageScore(user.mostRecentRatings)}%</h5>
                     <h5>lvl {Math.floor(user.level)}</h5>
 
                     {(selectedUser === user) && <div id="user-stats">
@@ -93,6 +94,11 @@ const Leaderboard = (props) => {
                                 <h6 className="us-li-amount font-secondary">{getAge(new Date(user.accountCreationDate), new Date())}</h6>
                             </li>
                         </ul>
+
+                        <div className="hit-miss-info">
+                            <h5 className="font-primary">Hit = 100% Accuracy</h5>
+                            <h5 className="font-primary">Miss = &lt;100% Accuracy</h5>
+                        </div>
                     </div>}
                 </li>
             })}

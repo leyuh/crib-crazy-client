@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import "../styles/RoundSummary.css";
 
+
 import axios from "axios";
 
 const RoundSummary = (props) => {
@@ -9,11 +10,13 @@ const RoundSummary = (props) => {
 
     const {
         setShowRoundSummary,
+        deck,
         originalHand,
         displayCards,
+        selectedCards,
+        myCombo,
         bestCombo,
         worstCombo,
-        myCombo,
         cribIsMine,
         resetRound,
         experienceRate
@@ -104,6 +107,7 @@ const RoundSummary = (props) => {
 
     useEffect(() => {
         if (cookies.access_token) {
+
             updateUserMostRecentRatings(accuracyRating, localStorage.getItem("userId"));
             updateUserLevel(localStorage.getItem("userId"), (experienceRate * (accuracyRating)));
 

@@ -18,16 +18,17 @@ const Home = () => {
     const [cribIsMine, setCribIsMine] = useState(true);
 
     const [selectedCards, setSelectedCards] = useState([]);
-    const [bestCombo, setBestCombo] = useState(null);
-    const [worstCombo, setWorstCombo] = useState(null);
-    const [myCombo, setMyCombo] = useState(null);
 
     const [showRoundSummary, setShowRoundSummary] = useState(false);
     const [showLeaderboard, setShowLeaderboard] = useState(false);
 
     const [displayCards, setDisplayCards] = useState(null);
 
-    const experienceRate = 0.0005;
+    const [myCombo, setMyCombo] = useState(null);
+    const [bestCombo, setBestCombo] = useState(null);
+    const [worstCombo, setWorstCombo] = useState(null);
+
+    const experienceRate = 0.001;
 
     useEffect(() => {
         resetRound();
@@ -43,9 +44,6 @@ const Home = () => {
 
         let cribIsMine = Math.random() >= 0.5;
         setCribIsMine(cribIsMine);
-
-        setBestCombo(Hand.getBestCombo(newDeck, hand, cribIsMine));
-        setWorstCombo(Hand.getBestCombo(newDeck, hand, cribIsMine, true));
     }
 
     useEffect(() => {
@@ -109,43 +107,28 @@ const Home = () => {
 
         <button id="submit-btn" className="primary font-secondary" onClick={() => {
 
-            let myComboIsBestCombo = true;
+            let threeCombos = Hand.getThreeCombos(currDeck, myHand, selectedCards, cribIsMine);
 
-            
-
-            let myCribSorted = selectedCards.sort(sortFunction);
-            let bestCribSorted = bestCombo["crib cards"].sort(sortFunction);
-
-            for (let i = 0; i < myCribSorted.length; i++) {
-                if (myCribSorted[i].commonName !== bestCribSorted[i].commonName) {
-                    myComboIsBestCombo = false;
-                }
-            }
+            let [myComboVar, bestComboVar, worstComboVar] = threeCombos;
 
             if (selectedCards.length == 2) {
-                if (myComboIsBestCombo) {
-                    setMyCombo(bestCombo);
-                } else {
-                    setMyCombo(Hand.evaluateCombo(
-                        currDeck, 
-                        myHand.cards.filter(card => selectedCards.indexOf(card) === -1),
-                        selectedCards,
-                        cribIsMine
-                    ));
-                }
+                setMyCombo(myComboVar);
+                setBestCombo(bestComboVar);
+                setWorstCombo(worstComboVar);
 
                 setShowRoundSummary(true);
-
             }
         }}>Submit</button>
 
         {showRoundSummary && <RoundSummary 
             setShowRoundSummary={setShowRoundSummary}
+            deck={currDeck}
             originalHand={myHand}
             displayCards={displayCards}
+            myCombo={myCombo}
             bestCombo={bestCombo}
             worstCombo={worstCombo}
-            myCombo={myCombo}
+            selectedCards={selectedCards}
             cribIsMine={cribIsMine}
             resetRound={resetRound}
             experienceRate={experienceRate}

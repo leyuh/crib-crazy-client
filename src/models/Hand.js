@@ -200,8 +200,22 @@ class Hand {
         }
     }
 
+    // [plrCombo, bestCombo, worstCombo]
+    static getThreeCombos = (deck, hand, plrCribThrow, cribIsMine) => {
 
-    static getBestCombo = (deck, hand, cribIsMine, worst = false) => {
+        let plrCombo = {
+            "hand cards": [],
+            "hand points": [],
+            "hand points total": 0,
+            "potential hand points": 0,
+
+            "crib cards": [],
+            "crib points": [],
+            "crib points total": 0,
+            "potential crib points": 0,
+
+            "overall score": 0
+        };
 
         let bestCombo = {
             "hand cards": [],
@@ -274,17 +288,28 @@ class Hand {
                     "overall score": overallScore
                 };
 
-                if (!worst && bestCombo["hand cards"].length === 0 || overallScore >= bestCombo["overall score"]) {
+                let passed = true;
+                for (let i = 0; i < thisCrib.cards.length; i++) {
+                    if (plrCribThrow.indexOf(thisCrib.cards[i]) === -1) {
+                        passed = false;
+                    }
+                }
+
+                if (passed) {
+                    plrCombo = thisCombo;
+                }
+
+                if (bestCombo["hand cards"].length === 0 || overallScore >= bestCombo["overall score"]) {
                     bestCombo = thisCombo;
                 }
 
-                if (worst && worstCombo["hand cards"].length === 0 || overallScore <= worstCombo["overall score"]) {
+                if (worstCombo["hand cards"].length === 0 || overallScore <= worstCombo["overall score"]) {
                     worstCombo = thisCombo;
                 }
             }
         }
 
-        return worst ? worstCombo : bestCombo;
+        return [plrCombo, bestCombo, worstCombo];
 
     }
 
