@@ -158,7 +158,6 @@
 }
 
 #accuracy-percentage-label {
-    background-color: rgba(0, 0, 0, 0.1);
     top: -75px !important;
     font-size: 50px;
     position: relative;

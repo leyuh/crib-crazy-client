@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import THEMES from "../modules/Themes.js";
 import "../styles/Themes.css";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Themes = ({ theme, setTheme }) => {
+    const [cookies, setCookies] = useCookies(["access_token"]);
 
     const [userLvl, setUserLvl] = useState(null);
 
@@ -13,17 +15,33 @@ const Themes = ({ theme, setTheme }) => {
         return firstLetter + rest;
     }
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                let response = await axios.get("http://localhost:3001/user/");
+    const fetchUsers = async () => {
+        try {
+            let response = await axios.get("http://localhost:3001/user/");
 
-                let thisUser = response.data.filter(val => val._id === localStorage.getItem("userId"))[0];
-                setUserLvl(thisUser.level);
-            } catch (err) {
-                console.error(err);
-            }
+            let thisUser = response.data.filter(val => val._id === localStorage.getItem("userId"))[0];
+            setUserLvl(thisUser.level);
+        } catch (err) {
+            console.error(err);
         }
+    }
+
+    const setCurrTheme = async (theme) => {
+        try {
+            let response = await axios.put("http://localhost:3001/user/set-curr-theme", {
+                _id: localStorage.getItem("userId"),
+                theme
+            }, {
+                headers: {
+                    authorization: cookies.access_token
+                }
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    useEffect(() => {
         fetchUsers();
     }, [])
 
@@ -37,6 +55,7 @@ const Themes = ({ theme, setTheme }) => {
                     if (userLvl >= THEMES[val]) {
                         return <li key={i} className="theme-li primary unlocked" onClick={() => {
                             setTheme(val);
+                            setCurrTheme(val);
                         }}>
                             <h1 className="font-secondary">{titleCase(val)}</h1>
                         </li>
