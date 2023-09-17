@@ -16,6 +16,8 @@ const Auth = (props) => {
 
     const [cookies, setCookies] = useCookies(["access_token"]);
 
+    const [status, setStatus] = useState("");
+
     const navigate = useNavigate();
 
     return <div id="auth" className="page default">
@@ -26,6 +28,8 @@ const Auth = (props) => {
             setCookies={setCookies}
             navigate={navigate}
             resetRound={resetRound}
+            status={status}
+            setStatus={setStatus}
         /> : <Login
             currAuthDiv={currAuthDiv}
             setCurrAuthDiv={setCurrAuthDiv} 
@@ -33,6 +37,8 @@ const Auth = (props) => {
             setCookies={setCookies}
             navigate={navigate}
             resetRound={resetRound}
+            status={status}
+            setStatus={setStatus}
         />}
     </div>
 }
@@ -44,7 +50,9 @@ const Login = (props) => {
         cookies,
         setCookies,
         navigate,
-        resetRound
+        resetRound,
+        status,
+        setStatus
     } = props;
 
     const [username, setUsername] = useState("");
@@ -53,6 +61,9 @@ const Login = (props) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
+        resetRound();
+
         try {
             const res = await axios.post("http://localhost:3001/auth/login", {
                 username,
@@ -77,7 +88,8 @@ const Login = (props) => {
         onSubmit={onSubmit}
         currAuthDiv={currAuthDiv}
         setCurrAuthDiv={setCurrAuthDiv}
-        resetRound={resetRound}
+        status={status}
+        setStatus={setStatus}
     />
 }
 
@@ -88,7 +100,9 @@ const Register = (props) => {
         cookies,
         setCookies,
         navigate,
-        resetRound
+        resetRound,
+        status,
+        setStatus
     } = props;
 
     const [username, setUsername] = useState("");
@@ -97,7 +111,33 @@ const Register = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        let passed = true;
+
+        if (username.length < 3) {
+            setStatus("Username is too short");
+            passed = false;
+        }
+        if (username.length > 16) {
+            setStatus("Username is too long");
+            passed = false;
+        }
+        if (password.length < 5) {
+            setStatus("Password is too short");
+            passed = false;
+        }
+        if (password.length > 20) {
+            setStatus("Password is too long");
+            passed = false;
+        }
+
+        if (!passed) return;
+
+        setStatus("");
+
+        resetRound();
+
         try {
+            console.log(username);
             await axios.post("http://localhost:3001/auth/register", {
                 username,
                 password
@@ -125,7 +165,8 @@ const Register = (props) => {
         onSubmit={onSubmit}
         currAuthDiv={currAuthDiv}
         setCurrAuthDiv={setCurrAuthDiv}
-        resetRound={resetRound}
+        status={status}
+        setStatus={setStatus}
     />
 }
 
@@ -138,7 +179,8 @@ const Form = ({
     onSubmit,
     currAuthDiv,
     setCurrAuthDiv,
-    resetRound
+    status,
+    setStatus
 }) => {
     return <div className="auth-container secondary primary-border">
         <form onSubmit={onSubmit}>
@@ -158,14 +200,15 @@ const Form = ({
                 }}/>
             </div>
 
-            <button type="submit" className="form-submit-btn" onClick={() => {
-                resetRound();
-            }}>{label}</button>
+            <h5 id="auth-status-label">{status}</h5>
+
+            <button type="submit" className="form-submit-btn">{label}</button>
 
         </form>
         
         <h3>{label === "Register" ? "Already have an account?" : "Don't have an account?"}</h3>
         <button onClick={() => {
+            setStatus("");
             if (currAuthDiv === "register") {
                 setCurrAuthDiv("login");
             } else {

@@ -27,6 +27,14 @@
     font-size: 18px;
 }
 
+#auth-status-label {
+    font-size: 15px;
+    margin-bottom: -20px;
+    position: relative;
+    top: -10px;
+    text-align: center;
+}
+
 .form-input {
     border-width: 0px;
     border-radius: 2.5px;
@@ -58,14 +66,14 @@
 .auth-container > h3 {
     display: inline-block;
     position: relative;
-    top: 20px;
+    top: 10px;
     font-size: 18px;
 }
 
 .auth-container > button {
     margin: 10px;
     position: relative;
-    top: 20px;
+    top: 10px;
     background-color: rgba(0, 0, 0, 0);
     border-width: 0px;
     font-family: inherit;
