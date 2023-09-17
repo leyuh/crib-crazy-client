@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import THEMES from "../modules/Themes.js";
-import "../styles/Themes.css";
-import axios from "axios";
 import { useCookies } from "react-cookie";
+import axios from "axios";
+
+import "../styles/Themes.css";
+
+import THEMES from "../modules/Themes.js";
+
 
 const Themes = ({ theme, setTheme }) => {
     const [cookies, setCookies] = useCookies(["access_token"]);

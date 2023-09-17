@@ -6,7 +6,12 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
 
-const Auth = () => {
+const Auth = (props) => {
+
+    const {
+        resetRound
+    } = props;
+
     const [currAuthDiv, setCurrAuthDiv] = useState("register");
 
     const [cookies, setCookies] = useCookies(["access_token"]);
@@ -20,12 +25,14 @@ const Auth = () => {
             cookies={cookies}
             setCookies={setCookies}
             navigate={navigate}
+            resetRound={resetRound}
         /> : <Login
             currAuthDiv={currAuthDiv}
             setCurrAuthDiv={setCurrAuthDiv} 
             cookies={cookies}
             setCookies={setCookies}
             navigate={navigate}
+            resetRound={resetRound}
         />}
     </div>
 }
@@ -36,7 +43,8 @@ const Login = (props) => {
         setCurrAuthDiv,
         cookies,
         setCookies,
-        navigate
+        navigate,
+        resetRound
     } = props;
 
     const [username, setUsername] = useState("");
@@ -69,6 +77,7 @@ const Login = (props) => {
         onSubmit={onSubmit}
         currAuthDiv={currAuthDiv}
         setCurrAuthDiv={setCurrAuthDiv}
+        resetRound={resetRound}
     />
 }
 
@@ -78,7 +87,8 @@ const Register = (props) => {
         setCurrAuthDiv,
         cookies,
         setCookies,
-        navigate
+        navigate,
+        resetRound
     } = props;
 
     const [username, setUsername] = useState("");
@@ -115,6 +125,7 @@ const Register = (props) => {
         onSubmit={onSubmit}
         currAuthDiv={currAuthDiv}
         setCurrAuthDiv={setCurrAuthDiv}
+        resetRound={resetRound}
     />
 }
 
@@ -126,7 +137,8 @@ const Form = ({
     label,
     onSubmit,
     currAuthDiv,
-    setCurrAuthDiv
+    setCurrAuthDiv,
+    resetRound
 }) => {
     return <div className="auth-container secondary primary-border">
         <form onSubmit={onSubmit}>
@@ -146,7 +158,9 @@ const Form = ({
                 }}/>
             </div>
 
-            <button type="submit" className="form-submit-btn">{label}</button>
+            <button type="submit" className="form-submit-btn" onClick={() => {
+                resetRound();
+            }}>{label}</button>
 
         </form>
         

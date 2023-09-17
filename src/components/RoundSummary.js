@@ -22,6 +22,7 @@ const RoundSummary = (props) => {
         experienceRate
     } = props;
 
+
     const updateUserMostRecentRatings = async (newRating, userId) => {
         try {
             let response = await axios.put("http://localhost:3001/user/new-rating", {
@@ -125,7 +126,7 @@ const RoundSummary = (props) => {
         <h2 className="font-primary">{cribIsMine ? "YOUR" : "THEIR"} CRIB</h2>
 
         <div className="cards-div med-cards-div" id="rs-initial-hand-div">
-            {displayCards.map((card, i) => {
+            {displayCards && displayCards.map((card, i) => {
                 return <div className={`rs-initial-hand-card card ${card.isRed ? "red" : "black"}`} key={i}>
                     <h4>{card.rank}</h4>
                     <h4>{card.suitImg}</h4>

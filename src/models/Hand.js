@@ -290,7 +290,7 @@ class Hand {
 
                 let passed = true;
                 for (let i = 0; i < thisCrib.cards.length; i++) {
-                    if (plrCribThrow.indexOf(thisCrib.cards[i]) === -1) {
+                    if (plrCribThrow.filter(val => val.commonName === thisCrib.cards[i].commonName).length === 0) {
                         passed = false;
                     }
                 }

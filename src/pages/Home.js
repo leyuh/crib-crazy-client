@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 import leaderboardIcon from "../images/leaderboard-icon.png";
 
@@ -8,49 +9,40 @@ import Deck from "../models/Deck.js";
 import Hand from "../models/Hand.js";
 import Card from "../models/Card.js";
 
+import useStickyState from "../hooks/useStickyState.js";
+
 import RoundSummary from "../components/RoundSummary.js";
 import Leaderboard from "../components/Leaderboard.js";
 
-const Home = () => {
 
-    const [currDeck, setCurrDeck] = useState(null);
-    const [myHand, setMyHand] = useState(null);
-    const [cribIsMine, setCribIsMine] = useState(true);
+const Home = (props) => {
 
-    const [selectedCards, setSelectedCards] = useState([]);
+    const {
+        currDeck,
+        setCurrDeck,
+        myHand,
+        setMyHand,
+        cribIsMine,
+        setCribIsMine,
+        selectedCards,
+        setSelectedCards,
+        resetRound
+    } = props;
 
-    const [showRoundSummary, setShowRoundSummary] = useState(false);
-    const [showLeaderboard, setShowLeaderboard] = useState(false);
+    const [cookies, setCookies] = useCookies(["access_token"]);
 
-    const [displayCards, setDisplayCards] = useState(null);
 
-    const [myCombo, setMyCombo] = useState(null);
-    const [bestCombo, setBestCombo] = useState(null);
-    const [worstCombo, setWorstCombo] = useState(null);
+    const [showRoundSummary, setShowRoundSummary] = useStickyState(false, "showRoundSummary");
+    const [showLeaderboard, setShowLeaderboard] = useStickyState(false, "showLeaderboard");
+
+    const [displayCards, setDisplayCards] = useStickyState(null, "displayCards");
+
+    const [myCombo, setMyCombo] = useStickyState(null, "myCombo");
+    const [bestCombo, setBestCombo] = useStickyState(null, "bestCombo");
+    const [worstCombo, setWorstCombo] = useStickyState(null, "worstCombo");
 
     const experienceRate = 0.001;
 
-    useEffect(() => {
-        resetRound();
-    }, [])
-
-    const resetRound = () => {
-        setSelectedCards([]);
-        
-        let newDeck = new Deck();
-        setCurrDeck(newDeck);
-        let hand = new Hand(newDeck.dealCards(6))
-        setMyHand(hand);
-
-        let cribIsMine = Math.random() >= 0.5;
-        setCribIsMine(cribIsMine);
-    }
-
-    useEffect(() => {
-        if (myHand) {
-            setDisplayCards(myHand.cards);
-        }
-    }, [myHand])
 
     const sortFunction = (a, b) => {
         if (Card.RANKS.indexOf(a.rank) > Card.RANKS.indexOf(b.rank)) {
@@ -71,6 +63,12 @@ const Home = () => {
         }
     }
 
+
+    useEffect(() => {
+        if (myHand) { setDisplayCards(myHand.cards); }
+    }, [myHand])
+
+
     return <div id="home" className="page">
         
         <button id="leaderboard-btn" onClick={() => setShowLeaderboard(prev => !prev)}>
@@ -90,7 +88,7 @@ const Home = () => {
 
         <div className="cards-div large-cards-div secondary primary-border" id="home-cards-div">
             {displayCards && displayCards.map((card, i) => {
-                return <div className={`card ${card.isRed ? "red" : "black"} ${selectedCards.indexOf(card) !== -1 && "selected"}`} key={i} onClick={() => {
+                return <div className={`card ${card.isRed ? "red" : "black"} ${selectedCards.filter(val => val.commonName === card.commonName).length > 0 ? "selected" : ""}`} key={i} onClick={() => {
                     if (selectedCards.indexOf(card) === -1) {
                         addSelectedCard(card);
                     }
@@ -115,7 +113,6 @@ const Home = () => {
                 setMyCombo(myComboVar);
                 setBestCombo(bestComboVar);
                 setWorstCombo(worstComboVar);
-
                 setShowRoundSummary(true);
             }
         }}>Submit</button>

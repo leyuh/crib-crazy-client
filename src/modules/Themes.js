@@ -1,9 +1,7 @@
 const THEMES = {
-    "default": 0,
+    "default": 1,
     "sky": 2,
-    "space": 5,
-    "matrix": 8,
-    "batman": 12
+    "space": 6
 }
 
 export default THEMES;

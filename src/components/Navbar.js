@@ -4,7 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import "../styles/Navbar.css";
 
-const Navbar = ({ setTheme }) => {
+const Navbar = (props) => {
+    const {
+        setTheme,
+        resetRound
+    } = props;
+
     const [cookies, setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
     
@@ -13,6 +18,7 @@ const Navbar = ({ setTheme }) => {
         window.localStorage.removeItem("userId");
         navigate("/auth");
         setTheme("default");
+        resetRound();
     }
 
     return <div id="navbar" className="primary font-secondary">
