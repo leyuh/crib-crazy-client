@@ -9,8 +9,10 @@ import "../styles/Auth.css";
 const Auth = (props) => {
 
     const {
-        resetRound
+        resetRound,
+        setTheme
     } = props;
+
 
     const [currAuthDiv, setCurrAuthDiv] = useState("register");
 
@@ -19,6 +21,15 @@ const Auth = (props) => {
     const [status, setStatus] = useState("");
 
     const navigate = useNavigate();
+
+    const setCurrTheme = async (userId) => {
+        try {
+            let response = await axios.get("http://localhost:3001/user/");
+            setTheme(response.data.filter(i => i._id === userId)[0].currTheme);
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     return <div id="auth" className="page default">
         {currAuthDiv === "register" ? <Register 
@@ -39,6 +50,7 @@ const Auth = (props) => {
             resetRound={resetRound}
             status={status}
             setStatus={setStatus}
+            setCurrTheme={setCurrTheme}
         />}
     </div>
 }
@@ -52,7 +64,8 @@ const Login = (props) => {
         navigate,
         resetRound,
         status,
-        setStatus
+        setStatus,
+        setCurrTheme
     } = props;
 
     const [username, setUsername] = useState("");
@@ -70,8 +83,15 @@ const Login = (props) => {
                 password
             });
 
+            setCurrTheme(res.data.userId);
             setCookies("access_token", res.data.token);
             window.localStorage.setItem("userId", res.data.userId);
+
+            const res2 = await axios.get("http://localhost:3001/user/", {
+                username,
+                password
+            });
+
             navigate("/");
 
         } catch (err) {

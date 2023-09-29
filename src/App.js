@@ -61,6 +61,7 @@ function App() {
         />} />
         <Route path="/auth" element={<Auth
           resetRound={resetRound}
+          setTheme={setTheme}
         />} />
       </Routes>
     </Router>
