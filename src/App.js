@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { HashRouter as Router, } from 'react-router-dom';
 
 import "./styles/App.css";
 import "./styles/ThemesModule.css";
