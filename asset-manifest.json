@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/crib-crazy-client/static/css/main.c6d167c0.css",
+    "main.js": "/crib-crazy-client/static/js/main.ba681b4d.js",
+    "static/media/clouds.png": "/crib-crazy-client/static/media/clouds.7bf7624924b6bf696c89.png",
+    "static/media/space.png": "/crib-crazy-client/static/media/space.fe45b7f1f1cdd1ab3f82.png",
+    "static/media/leaderboard-icon.png": "/crib-crazy-client/static/media/leaderboard-icon.0e5c8569063e26b3965e.png",
+    "index.html": "/crib-crazy-client/index.html",
+    "main.c6d167c0.css.map": "/crib-crazy-client/static/css/main.c6d167c0.css.map",
+    "main.ba681b4d.js.map": "/crib-crazy-client/static/js/main.ba681b4d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c6d167c0.css",
+    "static/js/main.ba681b4d.js"
+  ]
+}
