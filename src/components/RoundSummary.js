@@ -25,7 +25,7 @@ const RoundSummary = (props) => {
 
     const updateUserMostRecentRatings = async (newRating, userId) => {
         try {
-            let response = await axios.put("http://localhost:3001/user/new-rating", {
+            let response = await axios.put("https://crib-cards-api.onrender.com/user/new-rating", {
                 _id: userId,
                 newRating
             }, {
@@ -40,7 +40,7 @@ const RoundSummary = (props) => {
 
     const updateUserLevel = async (userId, amount) => {
         try {
-            let response = await axios.put("http://localhost:3001/user/update-lvl", {
+            let response = await axios.put("https://crib-cards-api.onrender.com/user/update-lvl", {
                 _id: userId,
                 amount
             }, {
@@ -55,7 +55,7 @@ const RoundSummary = (props) => {
 
     const updateHitMissCount = async (_id, isHit) => {
         try {
-            let response = await axios.put("http://localhost:3001/user/update-hit-miss-count", {
+            let response = await axios.put("https://crib-cards-api.onrender.com/user/update-hit-miss-count", {
                 _id,
                 isHit
             }, {
@@ -70,7 +70,7 @@ const RoundSummary = (props) => {
 
     const updateHitStreak = async (_id, isHit) => {
         try {
-            let response = await axios.put("http://localhost:3001/user/update-hit-streak", {
+            let response = await axios.put("https://crib-cards-api.onrender.com/user/update-hit-streak", {
                 _id,
                 isHit
             }, {
@@ -85,7 +85,7 @@ const RoundSummary = (props) => {
 
     const updateHighestThrowScore = async (_id, throwScore) => {
         try {
-            let response = await axios.put("http://localhost:3001/user/update-highest-throw-score", {
+            let response = await axios.put("https://crib-cards-api.onrender.com/user/update-highest-throw-score", {
                 _id,
                 throwScore
             }, {

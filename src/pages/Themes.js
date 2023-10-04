@@ -20,7 +20,7 @@ const Themes = ({ theme, setTheme }) => {
 
     const fetchUsers = async () => {
         try {
-            let response = await axios.get("http://localhost:3001/user/");
+            let response = await axios.get("https://crib-cards-api.onrender.com/user/");
 
             let thisUser = response.data.filter(val => val._id === localStorage.getItem("userId"))[0];
             setUserLvl(thisUser.level);
@@ -31,7 +31,7 @@ const Themes = ({ theme, setTheme }) => {
 
     const setCurrTheme = async (theme) => {
         try {
-            let response = await axios.put("http://localhost:3001/user/set-curr-theme", {
+            let response = await axios.put("https://crib-cards-api.onrender.com/user/set-curr-theme", {
                 _id: localStorage.getItem("userId"),
                 theme
             }, {

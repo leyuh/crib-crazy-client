@@ -24,7 +24,7 @@ const Auth = (props) => {
 
     const setCurrTheme = async (userId) => {
         try {
-            let response = await axios.get("http://localhost:3001/user/");
+            let response = await axios.get("https://crib-cards-api.onrender.com/user/");
             setTheme(response.data.filter(i => i._id === userId)[0].currTheme);
         } catch (err) {
             console.error(err);
@@ -78,7 +78,7 @@ const Login = (props) => {
         resetRound();
 
         try {
-            const res = await axios.post("http://localhost:3001/auth/login", {
+            const res = await axios.post("https://crib-cards-api.onrender.com/auth/login", {
                 username,
                 password
             });
@@ -87,7 +87,7 @@ const Login = (props) => {
             setCookies("access_token", res.data.token);
             window.localStorage.setItem("userId", res.data.userId);
 
-            const res2 = await axios.get("http://localhost:3001/user/", {
+            const res2 = await axios.get("https://crib-cards-api.onrender.com/user/", {
                 username,
                 password
             });
@@ -158,12 +158,12 @@ const Register = (props) => {
 
         try {
             console.log(username);
-            await axios.post("http://localhost:3001/auth/register", {
+            await axios.post("https://crib-cards-api.onrender.com/auth/register", {
                 username,
                 password
             })
 
-            const res = await axios.post("http://localhost:3001/auth/login", {
+            const res = await axios.post("https://crib-cards-api.onrender.com/auth/login", {
                 username,
                 password
             });

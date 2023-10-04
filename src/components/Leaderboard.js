@@ -29,7 +29,7 @@ const Leaderboard = (props) => {
         // fetch users
         const fetchUsers = async () => {
             try {
-                let response = await axios.get("http://localhost:3001/user/");
+                let response = await axios.get("https://crib-cards-api.onrender.com/user/");
                 setUsers(response.data.sort((a, b) => {
                     if (a.level > b.level) return -1;
                     if (a.level < b.level) return 1;
