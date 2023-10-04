@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "http://leyuh.github.io/crib-crazy-client/",
+  "homepage": "http://leyuh.github.io/crib-crazy-client",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
