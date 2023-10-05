@@ -45,3 +45,10 @@
 .locked > h1 {
     color: rgba(150, 150, 150, 0.5);
 }
+
+@media screen and (max-width: 650px) {
+    #themes > div {
+        height: 400px;
+        top: calc(50% - 200px);
+    }
+}

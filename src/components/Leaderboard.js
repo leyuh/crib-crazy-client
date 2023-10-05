@@ -55,7 +55,7 @@ const Leaderboard = (props) => {
                     }
                 }}>
                     {isFriend && <img className="friend-icon" src={friendIcon}/>}
-                    <h3 className={`${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : user._id === "650674806499f64540188fe9" ? "pink" : "font-secondary"}`}>
+                    <h3 className={`${i === 0 ? "first" : i === 1 ? "second" : i === 2 ? "third" : "font-secondary"}`}>
                         {user.username}
                     </h3>
                     <h5>lvl {Math.floor(user.level)}</h5>
