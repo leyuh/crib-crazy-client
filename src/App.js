@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import "./styles/App.css";
@@ -19,12 +19,17 @@ import useStickyState from "./hooks/useStickyState.js";
 function App() {
   const [theme, setTheme] = useStickyState("default", "theme");
 
-  let initDeck = new Deck();
-  const [currDeck, setCurrDeck] = useStickyState(initDeck, "currDeck");
-  const [myHand, setMyHand] = useStickyState(new Hand(initDeck.dealCards(6)), "myHand");
-  const [cribIsMine, setCribIsMine] = useStickyState(Math.random() >= 0.5, "cribIsMine");
+  const [currDeck, setCurrDeck] = useStickyState(null, "currDeck");
+  const [myHand, setMyHand] = useStickyState(null, "myHand");
+  const [cribIsMine, setCribIsMine] = useStickyState(true, "cribIsMine");
 
   const [selectedCards, setSelectedCards] = useStickyState([], "selectedCards");
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("myHand")) === null) {
+      resetRound();
+    }
+  }, [])
 
   const resetRound = () => {
     setSelectedCards([]);
