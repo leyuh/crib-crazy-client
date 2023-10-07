@@ -293,4 +293,8 @@
         background-color: rgba(0, 0, 0, 0);
     }
 
+    .total-li > h4 {
+        font-size: 14px;
+    }
+
 }

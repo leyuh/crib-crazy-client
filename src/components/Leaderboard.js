@@ -88,7 +88,7 @@ const Leaderboard = (props) => {
                                 <h6 className="us-li-amount font-secondary">{user.highestThrowScore}</h6>
                             </li>
                             <li>
-                                <h6 className="us-li-label font-primary">Account Creation Date:</h6>
+                                <h6 className="us-li-label font-primary">Acc. Creation Date:</h6>
                                 <h6 className="us-li-amount font-secondary">{new Date(user.accountCreationDate).toJSON().slice(2, 10)}</h6>
                             </li>
                             <li>
