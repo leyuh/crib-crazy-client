@@ -19,8 +19,9 @@ import useStickyState from "./hooks/useStickyState.js";
 function App() {
   const [theme, setTheme] = useStickyState("default", "theme");
 
-  const [currDeck, setCurrDeck] = useStickyState(new Deck(), "currDeck");
-  const [myHand, setMyHand] = useStickyState(new Hand(newDeck.dealCards(6)), "myHand");
+  let initDeck = new Deck();
+  const [currDeck, setCurrDeck] = useStickyState(initDeck, "currDeck");
+  const [myHand, setMyHand] = useStickyState(new Hand(initDeck.dealCards(6)), "myHand");
   const [cribIsMine, setCribIsMine] = useStickyState(Math.random() >= 0.5, "cribIsMine");
 
   const [selectedCards, setSelectedCards] = useStickyState([], "selectedCards");
