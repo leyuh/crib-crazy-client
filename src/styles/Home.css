@@ -194,8 +194,8 @@
     #home-cards-div {
         width: 360px;
         height: 95px;
-        position: relative;
-        left: calc(50% - 190px) !important;
+        position: absolute;
+        left: calc(50% - 190px);
         border-radius: 10px;
     }
 
@@ -233,7 +233,7 @@
         width: 100px;
         left: calc(50% - 50px);
         font-size: 18px;
-        top: -60px !important;
+        top: 55px !important;
     }
 
     .small-cards-div {
