@@ -268,14 +268,14 @@
 
     #round-sum-continue-btn {
         position: relative;
-        top: -180px;
+        top: -193px;
         float: right;
         left: 0px;
     }
 
     #accuracy-rating-label {
         position: relative;
-        top: -155px !important;
+        top: -158px !important;
         width: 200px;
         text-align: left;
         
@@ -283,13 +283,13 @@
 
     #accuracy-percentage-label {
         position: relative;
-        top: -85px !important;
+        top: -95px !important;
         height: 40px;
         line-height: 40px;
         width: 150px !important;
         text-align: left !important;
         left: 0px;
-        font-size: 35px;
+        font-size: 32px;
         background-color: rgba(0, 0, 0, 0);
     }
 
