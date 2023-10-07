@@ -260,6 +260,8 @@
 
     
     #submit-btn {
-        left: calc(50% - 160px);
+        position: absolute;
+        left: calc(50% - 60px);
+        top: 300px;
     }
 }
