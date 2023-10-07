@@ -26,6 +26,10 @@ function App() {
   const [selectedCards, setSelectedCards] = useStickyState([], "selectedCards");
 
   useEffect(() => {
+    if (localStorage.getItem("userId") === "") {
+      setTheme("default");
+    }
+
     if (JSON.parse(localStorage.getItem("myHand")) === null) {
       resetRound();
     }
