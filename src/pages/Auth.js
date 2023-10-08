@@ -157,11 +157,15 @@ const Register = (props) => {
         resetRound();
 
         try {
-            console.log(username);
-            await axios.post("https://crib-cards-api.onrender.com/auth/register", {
+            const reg = await axios.post("https://crib-cards-api.onrender.com/auth/register", {
                 username,
                 password
-            })
+            });
+
+            if (!reg.data.status) {
+                setStatus("User already exists");
+                return;
+            }
 
             const res = await axios.post("https://crib-cards-api.onrender.com/auth/login", {
                 username,

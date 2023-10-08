@@ -17,6 +17,7 @@ import Hand from "./models/Hand.js";
 import useStickyState from "./hooks/useStickyState.js";
 
 function App() {
+  const [cookies, setCookies] = useCookies(["access_token"]);
   const [theme, setTheme] = useStickyState("default", "theme");
 
   const [currDeck, setCurrDeck] = useStickyState(null, "currDeck");
@@ -26,8 +27,9 @@ function App() {
   const [selectedCards, setSelectedCards] = useStickyState([], "selectedCards");
 
   useEffect(() => {
-    if (localStorage.getItem("userId") === "") {
+    if (!cookies["access_token"]) {
       setTheme("default");
+      localStorage.setItem("userId", "");
     }
 
     if (JSON.parse(localStorage.getItem("myHand")) === null) {
