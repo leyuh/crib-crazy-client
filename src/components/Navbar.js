@@ -14,10 +14,7 @@ const Navbar = (props) => {
     const navigate = useNavigate();
     
     const logout = () => {
-        setCookies("access_token", "", {
-            httpOnly: "false",
-            sameSite: "none"
-        });
+        setCookies("access_token", "");
         window.localStorage.removeItem("userId");
         navigate("/auth");
         setTheme("default");
