@@ -10,11 +10,10 @@ const Auth = (props) => {
 
     const {
         resetRound,
-        setTheme,
-        cookies,
-        setCookies
+        setTheme
     } = props;
 
+    const [cookies, setCookies] = useCookies(["access_token"]);
 
     const [currAuthDiv, setCurrAuthDiv] = useState("register");
 
