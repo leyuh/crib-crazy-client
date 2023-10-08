@@ -84,9 +84,7 @@ const Login = (props) => {
             });
 
             setCurrTheme(res.data.userId);
-            setCookies("access_token", res.data.token, {
-                sameSite: "none"
-            });
+            setCookies("access_token", res.data.token);
             window.localStorage.setItem("userId", res.data.userId);
 
             const res2 = await axios.get("https://crib-cards-api.onrender.com/user/", {
