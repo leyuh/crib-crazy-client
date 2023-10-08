@@ -18,7 +18,7 @@ import Hand from "./models/Hand.js";
 import useStickyState from "./hooks/useStickyState.js";
 
 function App() {
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, setCookies, removeCookies] = useCookies(["access_token"]);
   const [theme, setTheme] = useStickyState("default", "theme");
 
   const [currDeck, setCurrDeck] = useStickyState(null, "currDeck");
@@ -56,6 +56,9 @@ function App() {
       <Navbar
         setTheme={setTheme}
         resetRound={resetRound}
+        cookies={cookies}
+        setCookies={setCookies}
+        removeCookies={removeCookies}
       />
       <Routes>
         <Route path="/" element={<Home 
@@ -76,6 +79,8 @@ function App() {
         <Route path="/auth" element={<Auth
           resetRound={resetRound}
           setTheme={setTheme}
+          cookies={cookies}
+          setCookies={setCookies}
         />} />
       </Routes>
     </Router>

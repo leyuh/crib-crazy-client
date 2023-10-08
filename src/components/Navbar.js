@@ -7,10 +7,12 @@ import "../styles/Navbar.css";
 const Navbar = (props) => {
     const {
         setTheme,
-        resetRound
+        resetRound,
+        cookies,
+        setCookies,
+        removeCookies
     } = props;
 
-    const [cookies, setCookies, removeCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
     
     const logout = () => {
