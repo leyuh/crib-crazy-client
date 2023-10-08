@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router } from 'react-router-dom';
+import { useCookies } from "react-cookie";
 
 import "./styles/App.css";
 import "./styles/ThemesModule.css";

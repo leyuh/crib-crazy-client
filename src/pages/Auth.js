@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 import "../styles/Auth.css";
