@@ -10,11 +10,11 @@ const Navbar = (props) => {
         resetRound
     } = props;
 
-    const [cookies, setCookies, removeCookies] = useCookies(["access_token"]);
+    const [cookies, setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
     
     const logout = () => {
-        removeCookies("access_token", {
+        setCookies("access_token", "", {
             httpOnly: "false",
             sameSite: "none"
         });
