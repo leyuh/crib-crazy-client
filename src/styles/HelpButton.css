@@ -1,0 +1,28 @@
+#help-btn {
+    height: 50px;
+    width: 50px;
+    background-color: rgba(134, 159, 131, 0);
+    border: 0px;
+    border-radius: 30px;
+
+    position: absolute;
+    right: 60px;
+    top: -40px;
+    font-family: inherit;
+}
+
+#help-btn > a {
+    color: white;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 40px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 650px) {
+    #help-btn {
+        left: 20px !important;
+        margin: 0;
+        padding: 0;
+    }
+}

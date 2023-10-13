@@ -13,6 +13,8 @@ import useStickyState from "../hooks/useStickyState.js";
 
 import RoundSummary from "../components/RoundSummary.js";
 import Leaderboard from "../components/Leaderboard.js";
+import HelpMenu from "../components/HelpMenu";
+import HelpButton from "../components/HelpButton";
 
 
 const Home = (props) => {
@@ -34,6 +36,7 @@ const Home = (props) => {
 
     const [showRoundSummary, setShowRoundSummary] = useStickyState(false, "showRoundSummary");
     const [showLeaderboard, setShowLeaderboard] = useStickyState(false, "showLeaderboard");
+    const [showHelpMenu, setShowHelpMenu] = useStickyState(false, "showHelpMenu");
 
     const [displayCards, setDisplayCards] = useStickyState(null, "displayCards");
 
@@ -71,6 +74,11 @@ const Home = (props) => {
 
     return <div id="home" className="page">
         
+        <HelpButton 
+            target="#help-label"
+            showHelpMenu={showHelpMenu}
+            setShowHelpMenu={setShowHelpMenu}
+        />
         <button id="leaderboard-btn" onClick={() => setShowLeaderboard(prev => !prev)}>
             <img src={leaderboardIcon}/>
         </button>
@@ -133,6 +141,11 @@ const Home = (props) => {
 
         {showLeaderboard && <Leaderboard 
             setShowLeaderboard={setShowLeaderboard}
+        />}
+
+        {showHelpMenu && <HelpMenu
+            showHelpMenu={showHelpMenu}
+            setShowHelpMenu={setShowHelpMenu}
         />}
     </div>
 }
