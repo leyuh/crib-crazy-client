@@ -16,6 +16,7 @@ import Deck from "./models/Deck.js";
 import Hand from "./models/Hand.js";
 
 import useStickyState from "./hooks/useStickyState.js";
+import axios from "axios";
 
 function App() {
   const [cookies] = useCookies(["access_token"]);
@@ -26,6 +27,22 @@ function App() {
   const [cribIsMine, setCribIsMine] = useStickyState(true, "cribIsMine");
 
   const [selectedCards, setSelectedCards] = useStickyState([], "selectedCards");
+
+  useEffect(() => {
+    // start server
+    const bootServer = async () => {
+      try {
+        let res = await axios.get("https://crib-cards-api.onrender.com/user/");
+        if (res.data) {
+          console.log("Fetching server....");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    bootServer();
+  }, [])
 
   useEffect(() => {
     if (!cookies["access_token"]) {
