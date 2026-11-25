@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Crib Crazy — Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React frontend for Crib Crazy (also titled Cribbage Crazy in the app manifest), a practice tool for the most important cribbage skill: choosing which two cards to throw into the crib.
 
-## Available Scripts
+The Express/MongoDB API lives in [crib-crazy-server](https://github.com/leyuh/crib-crazy-server).
 
-In the project directory, you can run:
+## Tech stack
 
-### `npm start`
+- React 18 (Create React App)
+- React Router
+- axios
+- react-cookie
+- Local storage for in-progress round state
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How it works
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Each round deals six random cards and randomly assigns the crib to you or to the opponent. You select two cards to discard. The app then compares your throw to every possible discard from that hand and shows a round summary:
 
-### `npm test`
+- Hand and crib point breakdowns, including average potential points once a random starter (and, for the crib, two random opponent cards) are added
+- A throw score (potential hand points plus potential crib points; crib points are negative when the crib is the opponent's)
+- An accuracy rating based on where your throw score sits between the worst and best possible throws
+- The bot's best combination, found by scoring all 15 possible discards
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A help menu in the app explains the scoring in more detail and links to cribbage rules.
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Card selection, sort, and a new random deal each round
+- Round summary comparing your discard to the best and worst options
+- Optional accounts (register / login) so stats can be saved
+- Leaderboard ranked by level, with average accuracy (last 50 hands), hit/miss ratio, longest hit streak, highest throw score, and account age
+- Unlockable themes: default (level 1), sky (level 2), and space (level 4)
+- Round state persisted in the browser so a refresh does not wipe the current hand
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How to run
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+npm start
+```
 
-### `npm run eject`
+The app opens at [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The client calls the hosted API at `https://crib-cards-api.onrender.com`. To use a local server, change those request URLs to `http://localhost:3001` (see [crib-crazy-server](https://github.com/leyuh/crib-crazy-server)).
